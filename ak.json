@@ -1,0 +1,26 @@
+{
+    "go_mod_package": "github.com/91go/gh-alfredworkflow",
+    "workflow": {
+        "folder": ".workflow",
+        "name": "gh-alfredworkflow",
+        "description": "gh shortcut actions",
+        "category_comment": "category: Tools",
+        "category": "Tools",
+        "bundle_id": "com.gh.hapihacking",
+        "created_by": "hapihacking",
+        "web_address": "https://github.com/91go/gh-alfredworkflow",
+        "version": "0.1.0"
+    },
+    "update": {
+        "github_repo": "https://github.com/91go/gh-alfredworkflow"
+    },
+    "license": {
+        "type_comment": "support license https://github.com/nishanths/license",
+        "type": "mit",
+        "year": "",
+        "name": ""
+    },
+    "gon": {
+        "application_identity": ""
+    }
+}
