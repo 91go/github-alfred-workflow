@@ -4,7 +4,7 @@ LDFLAGS ?= -X github.com/91go/gh-alfredworkflow/cmd.EnabledAutoUpdate=$(ENABLED_
 HAVE_GO_BINDATA := $(shell command -v go-bindata 2> /dev/null)
 generate: ## go generate
 ifndef HAVE_GO_BINDATA
-	@echo "requires 'go-bindata' (go get -u github.com/kevinburke/go-bindata/go-bindata)"
+	@echo "requires 'go-bindata' (go install github.com/go-bindata/go-bindata/go-bindata@latest)"
 	@exit 1 # fail	
 else
 	go generate ./...

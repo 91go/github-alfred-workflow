@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	repo = "xxx/ak-test"
+	repo = "91go/gh-alfredworkflow"
 	wf   *aw.Workflow
 	av   = aw.NewArgVars()
 )
@@ -25,8 +25,8 @@ func ErrorHandle(err error) {
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "gh-alfredworkflow",
-	Short: "",
+	Use:   "gh",
+	Short: "gh-alfredworkflow is a Alfred shortcut actions workflow for GitHub",
 	Run: func(cmd *cobra.Command, args []string) {
 		wf.SendFeedback()
 	},
