@@ -5,9 +5,23 @@
 	<key>bundleid</key>
 	<string>com.gh.hapihacking</string>
 	<key>category</key>
-	<string></string>
+	<string>Tools</string>
 	<key>connections</key>
-	<dict/>
+	<dict>
+		<key>12A3CC3A-8E53-4034-88C7-E05982952EDB</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B23E7AEC-B068-42C9-8FA2-37427A2B8498</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
 	<key>createdby</key>
 	<string>hapihacking</string>
 	<key>description</key>
@@ -17,13 +31,146 @@
 	<key>name</key>
 	<string>gh-alfredworkflow</string>
 	<key>objects</key>
-	<array/>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>{var:keyword}</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>query="{query}"
+
+read arg1 arg2 arg3 &lt;&lt;&lt; $query
+
+./exe $arg1 $arg2 $arg3</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>Search Github</string>
+				<key>type</key>
+				<integer>5</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>12A3CC3A-8E53-4034-88C7-E05982952EDB</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>skipqueryencode</key>
+				<false/>
+				<key>skipvarencode</key>
+				<false/>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>B23E7AEC-B068-42C9-8FA2-37427A2B8498</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
 	<key>readme</key>
 	<string></string>
 	<key>uidata</key>
-	<dict/>
+	<dict>
+		<key>12A3CC3A-8E53-4034-88C7-E05982952EDB</key>
+		<dict>
+			<key>xpos</key>
+			<real>275</real>
+			<key>ypos</key>
+			<real>100</real>
+		</dict>
+		<key>B23E7AEC-B068-42C9-8FA2-37427A2B8498</key>
+		<dict>
+			<key>xpos</key>
+			<real>500</real>
+			<key>ypos</key>
+			<real>100</real>
+		</dict>
+	</dict>
 	<key>userconfigurationconfig</key>
-	<array/>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>gh</string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>Github Trigger</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>keyword</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string></string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<true/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>GITHUB_TOKEN</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>GITHUB_TOKEN</string>
+		</dict>
+	</array>
 	<key>version</key>
 	<string>0.1.0</string>
 	<key>webaddress</key>

@@ -9,9 +9,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var (
-	EnabledAutoUpdate = "false"
-)
+var EnabledAutoUpdate = "false"
 
 const updateJobName = "checkForUpdate"
 

@@ -178,3 +178,8 @@ testenv
 coverage.txt
 .workflow/prefs.plist
 test
+/gh-alfredworkflow-0.1.0.alfredworkflow
+/coverage.out
+/.workflow/sqlite.db
+/sqlite.db
+!/.env

@@ -10,9 +10,11 @@ import (
 )
 
 var (
-	repo = "91go/gh-alfredworkflow"
-	wf   *aw.Workflow
-	av   = aw.NewArgVars()
+	repo  = "91go/gh-alfredworkflow"
+	wf    *aw.Workflow
+	av    = aw.NewArgVars()
+	gt    = "GITHUB_TOKEN"
+	token string
 )
 
 // ErrorHandle handle error
@@ -23,10 +25,20 @@ func ErrorHandle(err error) {
 	}
 }
 
+// TODO
+func checkEnv(cmd *cobra.Command, args []string) {
+	if token = wf.Config.GetString(gt); token == "" {
+		wf.NewItem("Please set your github token first").Valid(false).Icon(&aw.Icon{Value: "icons/warning.png"})
+		wf.SendFeedback()
+		return
+	}
+}
+
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "gh",
-	Short: "gh-alfredworkflow is a Alfred shortcut actions workflow for GitHub",
+	Use:              "gh",
+	Short:            "gh-alfredworkflow is a Alfred shortcut actions workflow for GitHub",
+	PersistentPreRun: checkEnv,
 	Run: func(cmd *cobra.Command, args []string) {
 		wf.SendFeedback()
 	},
@@ -35,6 +47,7 @@ var rootCmd = &cobra.Command{
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
+	rootCmd.PersistentFlags().StringVar(&token, gt, "", gt)
 	wf.Run(func() {
 		if err := rootCmd.Execute(); err != nil {
 			log.Println(err)

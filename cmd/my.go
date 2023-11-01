@@ -2,23 +2,47 @@ package cmd
 
 import (
 	"fmt"
-	"slices"
 
+	aw "github.com/deanishe/awgo"
 	"github.com/spf13/cobra"
 )
+
+type My struct {
+	icon     *aw.Icon
+	item     string
+	url      string
+	subtitle string
+}
+
+var my = []My{
+	{item: "Dashboard", url: "https://github.com/", subtitle: "View your dashboard", icon: &aw.Icon{Value: "icons/dashboard.png"}},
+	{item: "Notification", url: "https://github.com/notifications", subtitle: "View your notifications", icon: &aw.Icon{Value: "icons/notifications.png"}},
+	{item: "Profile", url: "https://github.com/%s", subtitle: "View your public user profile", icon: &aw.Icon{Value: "icons/profile.png"}},
+	{item: "Issue", url: "https://github.com/issues", subtitle: "View your issues", icon: &aw.Icon{Value: "icons/issues.png"}},
+	{item: "PR", url: "https://github.com/pulls", subtitle: "View your pull requests", icon: &aw.Icon{Value: "icons/pull-request.png"}},
+	{item: "repo", url: "https://github.com/%s?tab=repositories", subtitle: "View your repositories", icon: &aw.Icon{Value: "icons/repo.png"}},
+	{item: "New", url: "https://github.com/new", subtitle: "", icon: &aw.Icon{Value: "icons/new.png"}},
+	{item: "setting", url: "https://github.com/settings", subtitle: "View or edit your account settings", icon: &aw.Icon{Value: "icons/settings.png"}},
+	{item: "star", url: "https://github.com/%s?tab=stars", subtitle: "View your starred repositories", icon: &aw.Icon{Value: "icons/stars.png"}},
+	{item: "gist", url: "https://gist.github.com/%s", subtitle: "View your gists", icon: &aw.Icon{Value: "icons/gists.png"}},
+	{item: "topic", url: "https://github.com/%s?tab=stars", subtitle: "View your starred topics", icon: &aw.Icon{Value: "icons/topics.png"}},
+}
 
 // myCmd represents the my command
 var myCmd = &cobra.Command{
 	Use:   "my",
-	Short: "A brief description of your command",
+	Short: "list all my github shortcut actions",
+	Args:  cobra.RangeArgs(0, 1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("my called")
+		// list all sub
+		for _, m := range my {
+			url := fmt.Sprintf(m.url, "hapihacking")
+			items := wf.NewItem(m.item).Arg(url).Copytext(url).Quicklook(url).Largetype(m.subtitle).Valid(true).Subtitle(m.subtitle).Icon(m.icon).Title(m.item).Autocomplete(m.item)
+			items.Cmd().Subtitle("Press Enter to copy this url to clipboard")
+		}
+		wf.SendFeedback()
 	},
 }
-
-var (
-	mySubCommand = []string{"dashboard", "notifications", "profile", "issues", "pulls", "repos", "settings", "stars", "gists"}
-)
 
 func init() {
 	rootCmd.AddCommand(myCmd)
@@ -32,25 +56,6 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// myCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-
-	args := wf.Args()
-	if !slices.Contains(mySubCommand, args[0]) {
-		ErrorHandle(fmt.Errorf("invalid My subcommand: %s", args[0]))
-	}
-	// 需要单独处理 pulls 和 issues
-	if slices.Contains([]string{"pulls", "issues"}, args[0]) {
-
-		subs := map[string]string{
-			"created":   "Created",
-			"assigned":  "Assigned",
-			"mentioned": "Mentioned",
-		}
-
-		if len(args) == 1 {
-			wf.NewItem("Pulls").Arg("pulls").Valid(true).Subtitle(subs[]).Icon("icons/pulls.png")
-		}
-		wf.NewItem("Created").Arg("created").Valid(true)
-	}
 }
 
 // func addRepos(repos[], comparatorPrefix string) {
