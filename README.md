@@ -4,10 +4,7 @@
 
 有很多类似功能的repo，比如
 
-- [gharlan/alfred-github-workflow: GitHub Workflow for Alfred 4](https://github.com/gharlan/alfred-github-workflow)
-- [lox/alfred-github-jump: An alfred plugin to quickly jump to a github repository page](https://github.com/lox/alfred-github-jump)
-- [edgarjs/alfred-github-repos: Alfred workflow to easily open Github repositories](https://github.com/edgarjs/alfred-github-repos)
-- [giovannicoppola/alfred-hubHub: A hub for your GitHub repositories](https://github.com/giovannicoppola/alfred-hubHub)
+
 - ...
 
 但是，要不就是功能太多，要不就是功能太少，用起来都不算趁手，所以自己写一个。
@@ -40,8 +37,11 @@ gh my new
 gh my setting
 gh my gist
 gh my star
+
 # list all my starred topics, Allows you to reach the topics you want to view faster
-gh my topic
+gh my topic <topic>
+# search my repo, print LANGUAGE & repo describe & stars
+gh my repo <repo>
 
 ```
 
@@ -49,11 +49,8 @@ gh my topic
 
 ```shell
 
-# search my repo, print LANGUAGE & repo describe & stars
-gh repo <repo>
-
 # directly search repo
-gh repos <repo>
+gh repo <repo>
 
 ```
 
@@ -65,3 +62,13 @@ gh repos <repo>
 gh actions update
 
 ```
+
+
+## ref
+
+- [google/go-github: Go library for accessing the GitHub v3 API](https://github.com/google/go-github)
+- [Search - GitHub Docs](https://docs.github.com/en/rest/search/search?apiVersion=2022-11-28#search-repositories)
+- [gharlan/alfred-github-workflow: GitHub Workflow for Alfred 4](https://github.com/gharlan/alfred-github-workflow)
+- [lox/alfred-github-jump: An alfred plugin to quickly jump to a github repository page](https://github.com/lox/alfred-github-jump)
+- [edgarjs/alfred-github-repos: Alfred workflow to easily open Github repositories](https://github.com/edgarjs/alfred-github-repos)
+- [giovannicoppola/alfred-hubHub: A hub for your GitHub repositories](https://github.com/giovannicoppola/alfred-hubHub)

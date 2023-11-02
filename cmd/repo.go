@@ -30,8 +30,6 @@ var repoCmd = &cobra.Command{
 	Short: "search github repo directly",
 	Args:  cobra.RangeArgs(0, 2),
 	Run: func(cmd *cobra.Command, args []string) {
-		// 2. 获取参数
-		// TODO gh my repo <repo>
 		repos, err := ListRepositories()
 		if err != nil {
 			wf.FatalError(err)
@@ -72,19 +70,7 @@ var repoCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(repoCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// repoCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// repoCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-
-	// wf.Args()
+	myCmd.AddCommand(repoCmd)
 }
 
 // Search from sqlite
