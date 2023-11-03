@@ -29,7 +29,7 @@
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>gh-alfredworkflow</string>
+	<string>gh-actions</string>
 	<key>objects</key>
 	<array>
 		<dict>

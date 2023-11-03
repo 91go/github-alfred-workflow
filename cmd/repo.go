@@ -27,7 +27,7 @@ func (r Repository) FullName() string {
 var repoCmd = &cobra.Command{
 	Use:   "repo",
 	Short: "search github repo directly",
-	Args:  cobra.RangeArgs(0, 2),
+	Args:  cobra.RangeArgs(0, 1),
 	Run: func(cmd *cobra.Command, args []string) {
 		repos, err := ListRepositories()
 		if err != nil {
@@ -45,31 +45,11 @@ var repoCmd = &cobra.Command{
 			wf.Filter(args[0])
 		}
 		wf.SendFeedback()
-
-		// else {
-		// 	// 2.2 有参数，显示搜索结果
-		// 	query := args[0]
-		// 	repos, err := searchRepo(query)
-		// 	if err != nil {
-		// 		wf.FatalError(err)
-		// 	}
-		//
-		// 	for _, repo := range repos {
-		// 		// alfred 内置 fuzzy filter, 不需要自己判断
-		// 		url := repo.url
-		// 		items := wf.NewItem(repo.FullName()).Arg(url).Copytext(url).Quicklook(url).Largetype(repo.Description).Valid(true).subtitle(repo.Description).Icon(&aw.Icon{Value: "icons/repos.png"}).Title(repo.FullName()).Autocomplete(repo.FullName())
-		// 		items.Cmd().subtitle("Press Enter to copy this url to clipboard")
-		// 	}
-		// 	wf.Filter(query)
-		// }
-		// 3. 搜索 repo
-		// 4. 显示搜索结果
-		// 5. 选择结果，打开浏览器
 	},
 }
 
 func init() {
-	myCmd.AddCommand(repoCmd)
+	rootCmd.AddCommand(repoCmd)
 }
 
 // Search from sqlite

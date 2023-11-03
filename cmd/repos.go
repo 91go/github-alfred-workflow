@@ -12,22 +12,27 @@ var repoSearchCmd = &cobra.Command{
 	Short: "A brief description of your command",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		repos, err := utils.NewGithubClient(token).SearchRepositories(args[0])
-		if err != nil {
-			wf.FatalError(err)
-		}
-		for _, repo := range repos {
-			// alfred 内置 fuzzy filter, 不需要自己判断
-			url := *repo.URL
-			fullName := *repo.FullName
-			des := *repo.Description
-			// TODO 判断是否私有，不同的 icon
-			// TODO 语言，star 数量
-			wf.NewItem(fullName).Arg(url).Valid(true).Subtitle(des).Icon(&aw.Icon{Value: "icons/repo.png"}).Title(fullName).Autocomplete(fullName)
-		}
 		if len(args) > 0 {
-			wf.Filter(args[0])
+			repos, err := utils.NewGithubClient(token).SearchRepositories(args[0])
+			if err != nil {
+				wf.FatalError(err)
+			}
+			for _, repo := range repos {
+				url := *repo.URL
+				fullName := *repo.FullName
+				des := ""
+				if repo.Description != nil {
+					des = *repo.Description
+				}
+				// TODO 判断是否私有，不同的 icon
+				// TODO 语言，star 数量
+				wf.NewItem(fullName).Arg(url).Valid(true).Subtitle(des).Icon(&aw.Icon{Value: "icons/repo.png"}).Title(fullName).Autocomplete(fullName)
+			}
+			if len(args) > 1 {
+				wf.Filter(args[1])
+			}
 		}
+
 		wf.SendFeedback()
 	},
 }

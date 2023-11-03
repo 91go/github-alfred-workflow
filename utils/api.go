@@ -19,7 +19,7 @@ func NewGithubClient(token string) *GithubClient {
 // github API
 func (client *GithubClient) ListStarredRepositories() ([]*github.Repository, error) {
 	opt := &github.ActivityListStarredOptions{
-		ListOptions: github.ListOptions{PerPage: 45},
+		ListOptions: github.ListOptions{PerPage: 100},
 		Sort:        "pushed",
 	}
 
@@ -44,7 +44,7 @@ func (client *GithubClient) ListStarredRepositories() ([]*github.Repository, err
 
 func (client *GithubClient) ListUserRepositories() ([]*github.Repository, error) {
 	opt := &github.RepositoryListOptions{
-		ListOptions: github.ListOptions{PerPage: 45},
+		ListOptions: github.ListOptions{PerPage: 30},
 		Sort:        "pushed",
 	}
 
@@ -68,10 +68,11 @@ func (client *GithubClient) ListUserRepositories() ([]*github.Repository, error)
 // [Search - GitHub Docs](https://docs.github.com/en/rest/search/search?apiVersion=2022-11-28#search-repositories)
 func (client *GithubClient) SearchRepositories(title string) ([]*github.Repository, error) {
 	opt := &github.SearchOptions{
-		ListOptions: github.ListOptions{PerPage: 20},
+		ListOptions: github.ListOptions{PerPage: 30},
 		Sort:        "stars",
 	}
 	var repos []*github.Repository
+
 	result, _, err := client.c.Search.Repositories(context.Background(), title, opt)
 	if err != nil {
 		return repos, err

@@ -41,7 +41,7 @@ gh my star
 # list all my starred topics, Allows you to reach the topics you want to view faster
 # gh my topic <topic>
 # search my repo, print LANGUAGE & repo describe & stars
-gh my repo <repo>
+
 
 ```
 
@@ -49,8 +49,9 @@ gh my repo <repo>
 
 ```shell
 
-# directly search repo
 gh repo <repo>
+# directly search repo
+gh repos <repo>
 
 ```
 
@@ -60,6 +61,8 @@ gh repo <repo>
 
 # 更新 workflow
 gh actions update
+# 
+gh actions logout
 
 ```
 

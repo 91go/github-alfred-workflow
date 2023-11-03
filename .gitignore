@@ -182,4 +182,3 @@ test
 /coverage.out
 /.workflow/sqlite.db
 /sqlite.db
-!/.env
