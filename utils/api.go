@@ -2,6 +2,7 @@ package utils
 
 import (
 	"context"
+
 	"github.com/google/go-github/v56/github"
 	"github.com/gregjones/httpcache"
 )
@@ -68,7 +69,7 @@ func (client *GithubClient) ListUserRepositories() ([]*github.Repository, error)
 // [Search - GitHub Docs](https://docs.github.com/en/rest/search/search?apiVersion=2022-11-28#search-repositories)
 func (client *GithubClient) SearchRepositories(title string) ([]*github.Repository, error) {
 	opt := &github.SearchOptions{
-		ListOptions: github.ListOptions{PerPage: 30},
+		ListOptions: github.ListOptions{PerPage: 10},
 		Sort:        "stars",
 	}
 	var repos []*github.Repository

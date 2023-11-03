@@ -172,7 +172,7 @@ read arg1 arg2 arg3 &lt;&lt;&lt; $query
 		</dict>
 	</array>
 	<key>version</key>
-	<string>0.1.0</string>
+	<string>1.0.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/91go/gh-alfredworkflow</string>
 </dict>
