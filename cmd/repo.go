@@ -1,14 +1,13 @@
 package cmd
 
 import (
-	"context"
 	"fmt"
 	"time"
 
 	"github.com/91go/gh-alfredworkflow/utils"
+
 	aw "github.com/deanishe/awgo"
 
-	"github.com/google/go-github/v56/github"
 	"github.com/spf13/cobra"
 )
 
@@ -104,73 +103,5 @@ func ListRepositories() ([]Repository, error) {
 		})
 	}
 
-	return repos, nil
-}
-
-// github API
-func ListStarredRepositories(client *github.Client) ([]*github.Repository, error) {
-	opt := &github.ActivityListStarredOptions{
-		ListOptions: github.ListOptions{PerPage: 45},
-		Sort:        "pushed",
-	}
-
-	var repos []*github.Repository
-
-	for {
-		result, resp, err := client.Activity.ListStarred(context.Background(), "", opt)
-		if err != nil {
-			return repos, err
-		}
-		for _, starred := range result {
-			repos = append(repos, starred.Repository)
-		}
-		if resp.NextPage == 0 {
-			break
-		}
-		opt.ListOptions.Page = resp.NextPage
-	}
-
-	return repos, nil
-}
-
-func ListUserRepositories(client *github.Client) ([]*github.Repository, error) {
-	opt := &github.RepositoryListOptions{
-		ListOptions: github.ListOptions{PerPage: 45},
-		Sort:        "pushed",
-	}
-
-	var repos []*github.Repository
-
-	for {
-		result, resp, err := client.Repositories.List(context.Background(), "", opt)
-		if err != nil {
-			return repos, err
-		}
-		repos = append(repos, result...)
-		if resp.NextPage == 0 {
-			break
-		}
-		opt.ListOptions.Page = resp.NextPage
-	}
-
-	return repos, nil
-}
-
-// [Search - GitHub Docs](https://docs.github.com/en/rest/search/search?apiVersion=2022-11-28#search-repositories)
-func SearchRepositories(client *github.Client, title string) ([]*github.Repository, error) {
-	opt := &github.SearchOptions{
-		ListOptions: github.ListOptions{PerPage: 20},
-		Sort:        "stars",
-	}
-	var repos []*github.Repository
-	result, _, err := client.Search.Repositories(context.Background(), title, opt)
-	if err != nil {
-		return repos, err
-	}
-	repos = append(repos, result.Repositories...)
-	// if resp.NextPage == 0 {
-	// 	break
-	// }
-	// opt.ListOptions.Page = resp.NextPage
 	return repos, nil
 }

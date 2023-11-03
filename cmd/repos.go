@@ -1,8 +1,8 @@
 package cmd
 
 import (
+	"github.com/91go/gh-alfredworkflow/utils"
 	aw "github.com/deanishe/awgo"
-	"github.com/google/go-github/v56/github"
 	"github.com/spf13/cobra"
 )
 
@@ -10,9 +10,9 @@ import (
 var repoSearchCmd = &cobra.Command{
 	Use:   "repos",
 	Short: "A brief description of your command",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		client := github.NewClient(nil).WithAuthToken(token)
-		repos, err := SearchRepositories(client, args[0])
+		repos, err := utils.NewGithubClient(token).SearchRepositories(args[0])
 		if err != nil {
 			wf.FatalError(err)
 		}

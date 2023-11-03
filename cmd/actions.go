@@ -56,14 +56,12 @@ func init() {
 }
 
 func UpdateRepositories(token string) (int64, error) {
-	client := github.NewClient(nil).WithAuthToken(token)
-
-	userRepos, err := ListUserRepositories(client)
+	userRepos, err := utils.NewGithubClient(token).ListUserRepositories()
 	if err != nil {
 		return 0, err
 	}
 
-	starredRepos, err := ListStarredRepositories(client)
+	starredRepos, err := utils.NewGithubClient(token).ListStarredRepositories()
 	if err != nil {
 		return 0, err
 	}

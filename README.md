@@ -39,7 +39,7 @@ gh my gist
 gh my star
 
 # list all my starred topics, Allows you to reach the topics you want to view faster
-gh my topic <topic>
+# gh my topic <topic>
 # search my repo, print LANGUAGE & repo describe & stars
 gh my repo <repo>
 
