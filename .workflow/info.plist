@@ -170,6 +170,27 @@ read arg1 arg2 arg3 &lt;&lt;&lt; $query
 			<key>variable</key>
 			<string>GITHUB_TOKEN</string>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>chrome;chrome-extension;raycast;docusaurus;</string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<false/>
+				<key>verticalsize</key>
+				<integer>6</integer>
+			</dict>
+			<key>description</key>
+			<string>You can add the desired topic here for daily viewing.Please separate topics with ";", For example: k8s;etcd;chrome;alfred...etc</string>
+			<key>label</key>
+			<string>Custom Topics</string>
+			<key>type</key>
+			<string>textarea</string>
+			<key>variable</key>
+			<string>Topics</string>
+		</dict>
 	</array>
 	<key>version</key>
 	<string>1.0.0</string>

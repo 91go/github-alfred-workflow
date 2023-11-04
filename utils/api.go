@@ -20,7 +20,7 @@ func NewGithubClient(token string) *GithubClient {
 // github API
 func (client *GithubClient) ListStarredRepositories() ([]*github.Repository, error) {
 	opt := &github.ActivityListStarredOptions{
-		ListOptions: github.ListOptions{PerPage: 100},
+		ListOptions: github.ListOptions{PerPage: 30},
 		Sort:        "pushed",
 	}
 

@@ -1,12 +1,11 @@
 package cmd
 
 import (
-	"log"
-	"os"
-
 	aw "github.com/deanishe/awgo"
 	"github.com/deanishe/awgo/update"
 	"github.com/spf13/cobra"
+	"log"
+	"os"
 )
 
 var (

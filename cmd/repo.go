@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"os/exec"
 	"time"
 
 	"github.com/91go/gh-alfredworkflow/utils"
@@ -10,6 +11,8 @@ import (
 
 	"github.com/spf13/cobra"
 )
+
+const updateReposJobName = "update-repos"
 
 type Repository struct {
 	LastUpdated time.Time
@@ -44,6 +47,13 @@ var repoCmd = &cobra.Command{
 		if len(args) > 0 {
 			wf.Filter(args[0])
 		}
+		if !wf.IsRunning(updateReposJobName) {
+			cmd := exec.Command("./exe", "actions", "update-repos")
+			if err := wf.RunInBackground(updateReposJobName, cmd); err != nil {
+				ErrorHandle(err)
+			}
+		}
+
 		wf.SendFeedback()
 	},
 }
