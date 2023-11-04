@@ -18,16 +18,13 @@ var repoSearchCmd = &cobra.Command{
 		// priority list
 		xs := fmt.Sprintf("https://github.com/search?q=%s&type=repositories", strings.Join(args[0:], "+"))
 		wf.NewItem("Search on github").Arg(xs).Valid(true).Icon(&aw.Icon{Value: "icons/repo.png"}).Title("Searching on github").Subtitle("searching...")
-		wf.Rerun(0.1)
+		// wf.Rerun(0.1)
 
 		if len(args) == 1 {
 			repos, err := utils.NewGithubClient(token).SearchRepositories(args[0])
 			if err != nil {
 				wf.FatalError(err)
 			}
-
-			// xs := fmt.Sprintf("https://github.com/search?q=%s&type=repositories", strings.Join(args[0:], "+"))
-			// wf.NewItem("Search on github").Arg(xs).Valid(true).Icon(&aw.Icon{Value: "icons/repo.png"}).Title("Searching on github").Subtitle("searching...")
 
 			for _, repo := range repos {
 				url := repo.GetHTMLURL()
@@ -41,11 +38,6 @@ var repoSearchCmd = &cobra.Command{
 			// 	wf.Filter(args[1])
 			// }
 		}
-
-		// if len(args) > 1 {
-		// 	xs := fmt.Sprintf("https://github.com/search?q=%s&type=repositories", strings.Join(args[0:], "+"))
-		// 	wf.NewItem("Search on github").Arg(xs).Valid(true).Icon(&aw.Icon{Value: "icons/repo.png"}).Title("Searching on github").Subtitle("searching...")
-		// }
 
 		wf.SendFeedback()
 	},

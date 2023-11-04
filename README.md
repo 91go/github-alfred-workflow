@@ -59,6 +59,16 @@ gh repos <repo>
 
 ```
 
+### topics 命令
+```shell
+
+# search lang or other topics
+gh topics <lang>
+# search lang
+gh trending <lang>
+
+```
+
 ### actions 命令
 
 ```shell
