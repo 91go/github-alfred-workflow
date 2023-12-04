@@ -13,8 +13,9 @@ var langs = []string{"javascript", "python", "java", "ruby", "php", "c++", "c#",
 
 // trendCmd represents the trend command
 var trendCmd = &cobra.Command{
-	Use:   "trending",
-	Short: "LIST TRENDING REPOSITORIES",
+	Use:     "trending",
+	Short:   "View trending repositories",
+	Example: "icons/trending.svg",
 	Run: func(cmd *cobra.Command, args []string) {
 		url := "https://github.com/trending/%s?since=daily"
 		for _, lang := range langs {
@@ -28,7 +29,7 @@ var trendCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(trendCmd)
+	execCmd.AddCommand(trendCmd)
 
 	// Here you will define your flags and configuration settings.
 

@@ -7,9 +7,10 @@ import (
 
 // marketCmd represents the market command
 var marketCmd = &cobra.Command{
-	Use:   "market",
-	Short: "A brief description of your command",
-	Args:  cobra.RangeArgs(0, 1),
+	Use:     "market",
+	Short:   "Directly open github market page",
+	Args:    cobra.RangeArgs(0, 1),
+	Example: "icons/market.svg",
 	Run: func(cmd *cobra.Command, args []string) {
 		markets := []Metadata{
 			{item: "Actions", icon: &aw.Icon{Value: "icons/default.svg"}, url: "https://github.com/marketplace?type=actions"},
@@ -26,5 +27,5 @@ var marketCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(marketCmd)
+	execCmd.AddCommand(marketCmd)
 }

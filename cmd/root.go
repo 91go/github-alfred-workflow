@@ -54,18 +54,8 @@ func checkEnv(cmd *cobra.Command, args []string) {
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:              "gh",
-	Short:            "list all subcommands",
 	PersistentPreRun: checkEnv,
 	Run: func(cmd *cobra.Command, args []string) {
-		// get all subcommands
-		for _, c := range cmd.Commands() {
-			wf.NewItem(c.Name()).Arg(c.Name()).Valid(true).Icon(&aw.Icon{Value: "icons/repo.png"}).Title(c.Name()).Subtitle(c.Short).Autocomplete(c.Name())
-		}
-		if len(args) > 0 {
-			wf.Filter(args[0])
-		}
-		// wf.WarnEmpty("No matching commands", "Try a different query?")
-		wf.SendFeedback()
 	},
 }
 

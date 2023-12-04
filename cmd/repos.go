@@ -11,9 +11,10 @@ import (
 
 // repoSearchCmd represents the repoSearch command
 var repoSearchCmd = &cobra.Command{
-	Use:   "repos",
-	Short: "Searching repositories from github",
-	Args:  cobra.RangeArgs(1, 4),
+	Use:     "repos",
+	Short:   "Searching repositories from github",
+	Args:    cobra.RangeArgs(1, 4),
+	Example: "icons/repos.svg",
 	Run: func(cmd *cobra.Command, args []string) {
 		// priority list
 		xs := fmt.Sprintf("https://github.com/search?q=%s&type=repositories", strings.Join(args[0:], "+"))
@@ -44,5 +45,5 @@ var repoSearchCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(repoSearchCmd)
+	execCmd.AddCommand(repoSearchCmd)
 }

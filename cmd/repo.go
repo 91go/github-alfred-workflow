@@ -28,9 +28,10 @@ func (r Repository) FullName() string {
 
 // repoCmd represents the repo command
 var repoCmd = &cobra.Command{
-	Use:   "repo",
-	Short: "Searching Starred Repositories And Metadata Repositories",
-	Args:  cobra.RangeArgs(0, 1),
+	Use:     "repo",
+	Short:   "Searching from starred repositories and my repositories",
+	Args:    cobra.RangeArgs(0, 1),
+	Example: "icons/repo.svg",
 	Run: func(cmd *cobra.Command, args []string) {
 		repos, err := ListRepositories()
 		if err != nil {
@@ -56,7 +57,7 @@ var repoCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(repoCmd)
+	execCmd.AddCommand(repoCmd)
 }
 
 // Search from sqlite

@@ -12,9 +12,10 @@ import (
 
 // myCmd represents the my command
 var myCmd = &cobra.Command{
-	Use:   "my",
-	Short: "LIST ALL MY GITHUB SHORTCUT ACTIONS",
-	Args:  cobra.RangeArgs(0, 1),
+	Use:     "my",
+	Short:   "List all my github shortcut actions",
+	Args:    cobra.RangeArgs(0, 1),
+	Example: "icons/me.svg",
 	Run: func(cmd *cobra.Command, args []string) {
 		xxx := cacheUsername()
 
@@ -43,7 +44,7 @@ var myCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(myCmd)
+	execCmd.AddCommand(myCmd)
 }
 
 func cacheUsername() string {

@@ -12,6 +12,57 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
+				<string>5E9CBD10-4E36-4FEB-8C26-161AE1BF068E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>5E9CBD10-4E36-4FEB-8C26-161AE1BF068E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B65483B3-5C3A-4667-9B45-3EE5FB41AE7B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>376195D3-8050-45A1-AADB-56584F6E4DFD</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>D94071E1-43A6-4925-B004-A579133CA959</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>B65483B3-5C3A-4667-9B45-3EE5FB41AE7B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F9940676-47CD-4214-9E7E-52C4BB977B1C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>D94071E1-43A6-4925-B004-A579133CA959</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
 				<string>B23E7AEC-B068-42C9-8FA2-37427A2B8498</string>
 				<key>modifiers</key>
 				<integer>0</integer>
@@ -47,6 +98,100 @@
 				<integer>0</integer>
 				<key>escaping</key>
 				<integer>102</integer>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>./exe exec actions {query}</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>Running actions in background...</string>
+				<key>type</key>
+				<integer>5</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>F9940676-47CD-4214-9E7E-52C4BB977B1C</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>./exe exec {query}</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>B65483B3-5C3A-4667-9B45-3EE5FB41AE7B</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
 				<key>keyword</key>
 				<string>{var:keyword}</string>
 				<key>queuedelaycustom</key>
@@ -60,11 +205,7 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>query="{query}"
-
-read arg1 arg2 arg3 &lt;&lt;&lt; $query
-
-./exe $arg1 $arg2 $arg3</string>
+				<string>./exe list {query}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -74,7 +215,7 @@ read arg1 arg2 arg3 &lt;&lt;&lt; $query
 				<key>title</key>
 				<string>Search Github</string>
 				<key>type</key>
-				<integer>5</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -106,6 +247,85 @@ read arg1 arg2 arg3 &lt;&lt;&lt; $query
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>./exe exec {query}</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>D94071E1-43A6-4925-B004-A579133CA959</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>actions</string>
+						<key>outputlabel</key>
+						<string></string>
+						<key>uid</key>
+						<string>376195D3-8050-45A1-AADB-56584F6E4DFD</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>else</string>
+				<key>hideelse</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>5E9CBD10-4E36-4FEB-8C26-161AE1BF068E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -114,14 +334,42 @@ read arg1 arg2 arg3 &lt;&lt;&lt; $query
 		<key>12A3CC3A-8E53-4034-88C7-E05982952EDB</key>
 		<dict>
 			<key>xpos</key>
-			<real>275</real>
+			<real>80</real>
 			<key>ypos</key>
-			<real>100</real>
+			<real>275</real>
+		</dict>
+		<key>5E9CBD10-4E36-4FEB-8C26-161AE1BF068E</key>
+		<dict>
+			<key>xpos</key>
+			<real>260</real>
+			<key>ypos</key>
+			<real>375</real>
 		</dict>
 		<key>B23E7AEC-B068-42C9-8FA2-37427A2B8498</key>
 		<dict>
 			<key>xpos</key>
-			<real>500</real>
+			<real>765</real>
+			<key>ypos</key>
+			<real>285</real>
+		</dict>
+		<key>B65483B3-5C3A-4667-9B45-3EE5FB41AE7B</key>
+		<dict>
+			<key>xpos</key>
+			<real>375</real>
+			<key>ypos</key>
+			<real>100</real>
+		</dict>
+		<key>D94071E1-43A6-4925-B004-A579133CA959</key>
+		<dict>
+			<key>xpos</key>
+			<real>470</real>
+			<key>ypos</key>
+			<real>285</real>
+		</dict>
+		<key>F9940676-47CD-4214-9E7E-52C4BB977B1C</key>
+		<dict>
+			<key>xpos</key>
+			<real>600</real>
 			<key>ypos</key>
 			<real>100</real>
 		</dict>
@@ -210,7 +458,7 @@ Turkish: tr</string>
 		</dict>
 	</array>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.2.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/91go/gh-alfredworkflow</string>
 </dict>

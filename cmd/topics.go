@@ -12,8 +12,9 @@ import (
 
 // topicCmd represents the topic command
 var topicCmd = &cobra.Command{
-	Use:   "topics",
-	Short: "LIST ALL STARRED TOPICS",
+	Use:     "topics",
+	Short:   "List all starred topics",
+	Example: "icons/topics.svg",
 	Run: func(cmd *cobra.Command, args []string) {
 		url := "https://github.com/topics/%s?o=desc&s=updated"
 
@@ -37,5 +38,5 @@ var topicCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(topicCmd)
+	execCmd.AddCommand(topicCmd)
 }

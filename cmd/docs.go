@@ -10,9 +10,10 @@ import (
 
 // docsCmd represents the docs command
 var docsCmd = &cobra.Command{
-	Use:   "docs",
-	Short: "A brief description of your command",
-	Args:  cobra.RangeArgs(0, 1),
+	Use:     "docs",
+	Short:   "Directly open github docs page",
+	Args:    cobra.RangeArgs(0, 1),
+	Example: "icons/docs.svg",
 	Run: func(cmd *cobra.Command, args []string) {
 		markets := []Metadata{
 			{item: "docs", icon: &aw.Icon{Value: "icons/default.svg"}, url: "https://docs.github.com/%s"},
@@ -24,7 +25,7 @@ var docsCmd = &cobra.Command{
 		}
 		lang := wf.Config.GetString("lang", "en")
 		for _, m := range markets {
-			wf.NewItem(m.item).Icon(m.icon).Subtitle(m.subtitle).Arg(fmt.Sprintf(m.url, lang)).Valid(true).UID(m.item).Autocomplete(m.item).IsFile(true)
+			wf.NewItem(m.item).Icon(m.icon).Subtitle(m.subtitle).Arg(fmt.Sprintf(m.url, lang)).Valid(true).UID(m.item).Autocomplete(m.item)
 		}
 		if len(args) > 0 {
 			wf.Filter(args[0])
@@ -34,5 +35,5 @@ var docsCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(docsCmd)
+	execCmd.AddCommand(docsCmd)
 }

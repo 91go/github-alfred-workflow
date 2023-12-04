@@ -13,19 +13,20 @@ import (
 )
 
 var actions = []Metadata{
-	{item: "actions token", subtitle: "Enter to set github token", icon: &aw.Icon{Value: "icons/actions-token.svg"}},
-	{item: "actions sync", subtitle: "Enter to flush repositories local database", icon: &aw.Icon{Value: "icons/actions-sync.svg"}},
-	{item: "actions update", subtitle: "Enter to check workflow's update", icon: &aw.Icon{Value: "icons/actions-update.svg"}},
-	{item: "actions clean", subtitle: "Enter to clear caches", icon: &aw.Icon{Value: "icons/actions-clean.svg"}},
+	{item: "token", subtitle: "Enter to set github token", icon: &aw.Icon{Value: "icons/actions-token.svg"}},
+	{item: "sync", subtitle: "Enter to flush repositories local database", icon: &aw.Icon{Value: "icons/actions-sync.svg"}},
+	{item: "update", subtitle: "Enter to check workflow's update", icon: &aw.Icon{Value: "icons/actions-update.svg"}},
+	{item: "clean", subtitle: "Enter to clear caches", icon: &aw.Icon{Value: "icons/actions-clean.svg"}},
 }
 
 // actionsCmd represents the actions command
 var actionsCmd = &cobra.Command{
-	Use:   "actions",
-	Short: "LIST ALL ACTIONS",
+	Use:     "actions",
+	Short:   "Common Operations",
+	Example: "icons/actions.svg",
 	Run: func(cmd *cobra.Command, args []string) {
 		for _, m := range actions {
-			items := wf.NewItem(m.item).Valid(true).Subtitle(m.subtitle).Icon(m.icon)
+			items := wf.NewItem(m.item).Valid(true).Subtitle(m.subtitle).Icon(m.icon).Arg(m.item)
 			items.Cmd().Subtitle("Press Enter to copy this url to clipboard")
 		}
 
@@ -41,7 +42,7 @@ var updateCmd = &cobra.Command{
 		if err := wf.CheckForUpdate(); err != nil {
 			wf.FatalError(err)
 		}
-		wf.NewItem("Success.")
+		wf.SendFeedback().NewItem("Success.")
 	},
 }
 
@@ -68,6 +69,7 @@ var updateCmd = &cobra.Command{
 var tokenCmd = &cobra.Command{
 	Use:   "token",
 	Short: "A brief description of your command",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		store := secret.NewStore(wf)
 		token := args[0]
@@ -94,7 +96,7 @@ var tokenCmd = &cobra.Command{
 		}
 		// wf.Config.Set(secret.KeyGithubAPIToken, cmd.Token)
 
-		wf.NewItem("Success.")
+		wf.SendFeedback().NewItem("Success.")
 	},
 }
 
@@ -108,7 +110,7 @@ var pruneCmd = &cobra.Command{
 		if err != nil {
 			wf.FatalError(err)
 		}
-		wf.NewItem("Success.")
+		wf.SendFeedback().NewItem("Success.")
 	},
 }
 
@@ -122,12 +124,12 @@ var syncCmd = &cobra.Command{
 		if err != nil {
 			wf.FatalError(err)
 		}
-		wf.NewItem("Success.")
+		wf.SendFeedback().NewItem("Success.")
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(actionsCmd)
+	execCmd.AddCommand(actionsCmd)
 	actionsCmd.AddCommand(updateCmd)
 	actionsCmd.AddCommand(tokenCmd)
 	actionsCmd.AddCommand(pruneCmd)
