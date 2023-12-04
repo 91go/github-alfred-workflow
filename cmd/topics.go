@@ -17,7 +17,7 @@ var topicCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		url := "https://github.com/topics/%s?o=desc&s=updated"
 
-		if topics := wf.Config.GetString("Topics"); topics != "" {
+		if topics := wf.Config.GetString("topics"); topics != "" {
 			ts := strings.Split(topics, ";")
 			for i := 0; i < len(ts); i++ {
 				wf.NewItem(ts[i]).Title(ts[i]).Subtitle(fmt.Sprintf("Looking for %s trending", ts[i])).Arg(fmt.Sprintf(url, ts[i])).Valid(true)
