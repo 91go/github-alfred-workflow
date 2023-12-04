@@ -46,7 +46,7 @@ var repoCmd = &cobra.Command{
 			wf.Filter(args[0])
 		}
 		if !wf.IsRunning(updateReposJobName) {
-			cmd := exec.Command("./exe", "actions", updateReposJobName)
+			cmd := exec.Command("./exe", "exec", "actions", updateReposJobName)
 			if err := wf.RunInBackground(updateReposJobName, cmd); err != nil {
 				ErrorHandle(err)
 			}
