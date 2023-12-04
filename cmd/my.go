@@ -10,13 +10,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-type My struct {
-	icon     *aw.Icon
-	item     string
-	url      string
-	subtitle string
-}
-
 // myCmd represents the my command
 var myCmd = &cobra.Command{
 	Use:   "my",
@@ -25,7 +18,7 @@ var myCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		xxx := cacheUsername()
 
-		my := []My{
+		my := []Metadata{
 			{item: "dashboard", url: "https://github.com/", subtitle: "View your dashboard", icon: &aw.Icon{Value: "icons/dashboard.png"}},
 			{item: "notifications", url: "https://github.com/notifications", subtitle: "View your notifications", icon: &aw.Icon{Value: "icons/notifications.png"}},
 			{item: "profile", url: fmt.Sprintf("https://github.com/%s", xxx), subtitle: "View your public user profile", icon: &aw.Icon{Value: "icons/profile.png"}},

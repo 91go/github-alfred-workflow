@@ -18,6 +18,13 @@ var (
 	token string
 )
 
+type Metadata struct {
+	icon     *aw.Icon
+	item     string
+	url      string
+	subtitle string
+}
+
 // ErrorHandle handle error
 func ErrorHandle(err error) {
 	av.Var("error", err.Error())
@@ -37,7 +44,7 @@ func checkEnv(cmd *cobra.Command, args []string) {
 		return
 	}
 	store := secret.NewStore(wf)
-	if token, _ = store.Get(secret.KeyGithubAPIToken); token == "" {
+	if token, _ = store.GetAPIToken(); token == "" {
 		wf.NewItem("Please set your github token first").Valid(false).Icon(&aw.Icon{Value: "icons/warning.png"})
 		wf.SendFeedback()
 		return

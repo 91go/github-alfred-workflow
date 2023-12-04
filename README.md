@@ -9,14 +9,7 @@
 如果有问题，请发 issues 告诉我。
 
 
-
-### gh 命令
-
-```shell
-gh
-#
-```
-
+## Usage
 
 ### my 命令
 
@@ -51,6 +44,7 @@ gh repos <repo>
 ```
 
 ### topics 命令
+
 ```shell
 
 # search lang or other topics
@@ -65,10 +59,32 @@ gh trending <lang>
 ```shell
 
 gh actions
-gh actions update-workflow
-gh actions update-repos
-gh actions clear-caches
+
+gh actions token
+gh actions update
+gh actions sync
+gh actions clean
 # switch users
 gh actions switch
 
 ```
+
+### market 命令
+
+
+```shell
+gh market <actions|apps>
+```
+
+- [GitHub Marketplace · Actions to improve your workflow](https://github.com/marketplace?type=actions)
+
+### docs 命令
+
+
+```shell
+gh docs <actions|repositories|...>
+```
+
+
+- [GitHub Docs](https://docs.github.com/en)
+- [GitHub Docs](https://docs.github.com/zh)

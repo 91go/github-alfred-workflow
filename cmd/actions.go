@@ -12,13 +12,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-type Action struct {
-	item     string
-	icon     *aw.Icon
-	subtitle string
-}
-
-var actions = []Action{
+var actions = []Metadata{
 	{item: "actions token", subtitle: "Enter to set github token", icon: &aw.Icon{Value: "icons/actions-token.svg"}},
 	{item: "actions sync", subtitle: "Enter to flush repositories local database", icon: &aw.Icon{Value: "icons/actions-sync.svg"}},
 	{item: "actions update", subtitle: "Enter to check workflow's update", icon: &aw.Icon{Value: "icons/actions-update.svg"}},
@@ -118,8 +112,8 @@ var pruneCmd = &cobra.Command{
 	},
 }
 
-// updateReposCmd represents the updateRepos command
-var updateReposCmd = &cobra.Command{
+// syncCmd represents the updateRepos command
+var syncCmd = &cobra.Command{
 	Use:    "sync",
 	Short:  "A brief description of your command",
 	Hidden: true,
@@ -137,7 +131,7 @@ func init() {
 	actionsCmd.AddCommand(updateCmd)
 	actionsCmd.AddCommand(tokenCmd)
 	actionsCmd.AddCommand(pruneCmd)
-	actionsCmd.AddCommand(updateReposCmd)
+	actionsCmd.AddCommand(syncCmd)
 }
 
 func UpdateRepositories(token string) (int64, error) {

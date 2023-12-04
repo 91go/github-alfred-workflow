@@ -12,7 +12,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const updateReposJobName = "update-repos"
+const updateReposJobName = "sync"
 
 type Repository struct {
 	LastUpdated time.Time
@@ -29,7 +29,7 @@ func (r Repository) FullName() string {
 // repoCmd represents the repo command
 var repoCmd = &cobra.Command{
 	Use:   "repo",
-	Short: "Searching Starred Repositories And My Repositories",
+	Short: "Searching Starred Repositories And Metadata Repositories",
 	Args:  cobra.RangeArgs(0, 1),
 	Run: func(cmd *cobra.Command, args []string) {
 		repos, err := ListRepositories()
@@ -45,7 +45,7 @@ var repoCmd = &cobra.Command{
 			wf.Filter(args[0])
 		}
 		if !wf.IsRunning(updateReposJobName) {
-			cmd := exec.Command("./exe", "actions", "update-repos")
+			cmd := exec.Command("./exe", "actions", updateReposJobName)
 			if err := wf.RunInBackground(updateReposJobName, cmd); err != nil {
 				ErrorHandle(err)
 			}
