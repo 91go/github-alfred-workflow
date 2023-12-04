@@ -14,7 +14,7 @@ var langs = []string{"javascript", "python", "java", "ruby", "php", "c++", "c#",
 // trendCmd represents the trend command
 var trendCmd = &cobra.Command{
 	Use:   "trending",
-	Short: "A brief description of your command",
+	Short: "LIST TRENDING REPOSITORIES",
 	Run: func(cmd *cobra.Command, args []string) {
 		url := "https://github.com/trending/%s?since=daily"
 		for _, lang := range langs {

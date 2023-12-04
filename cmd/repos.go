@@ -12,7 +12,7 @@ import (
 // repoSearchCmd represents the repoSearch command
 var repoSearchCmd = &cobra.Command{
 	Use:   "repos",
-	Short: "A brief description of your command",
+	Short: "Searching repositories from github",
 	Args:  cobra.RangeArgs(1, 4),
 	Run: func(cmd *cobra.Command, args []string) {
 		// priority list

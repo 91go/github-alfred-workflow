@@ -153,27 +153,6 @@ read arg1 arg2 arg3 &lt;&lt;&lt; $query
 			<key>config</key>
 			<dict>
 				<key>default</key>
-				<string></string>
-				<key>placeholder</key>
-				<string></string>
-				<key>required</key>
-				<true/>
-				<key>trim</key>
-				<true/>
-			</dict>
-			<key>description</key>
-			<string></string>
-			<key>label</key>
-			<string>GITHUB_TOKEN</string>
-			<key>type</key>
-			<string>textfield</string>
-			<key>variable</key>
-			<string>GITHUB_TOKEN</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>default</key>
 				<string>chrome;chrome-extension;raycast;docusaurus;</string>
 				<key>required</key>
 				<false/>

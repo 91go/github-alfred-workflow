@@ -1,6 +1,3 @@
-/*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
@@ -10,7 +7,7 @@ import (
 // pruneCmd represents the logout command
 var pruneCmd = &cobra.Command{
 	Use:   "clear-caches",
-	Short: "A brief description of your command",
+	Short: "CLEAR CACHES",
 	Run: func(cmd *cobra.Command, args []string) {
 		// 删除 my.json
 		err := wf.ClearCache()

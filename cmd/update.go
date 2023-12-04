@@ -33,7 +33,7 @@ func CheckForUpdate() {
 // updateCmd represents the update command
 var updateCmd = &cobra.Command{
 	Use:   "update-workflow",
-	Short: "Update gh-alfredworkflow",
+	Short: "UPDATE WORKFLOW",
 	Run: func(cmd *cobra.Command, args []string) {
 		wf.Configure(aw.TextErrors(true))
 		logrus.Println("Checking for updates...")

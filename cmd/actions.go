@@ -21,7 +21,7 @@ var actions = []Action{
 // actionsCmd represents the actions command
 var actionsCmd = &cobra.Command{
 	Use:   "actions",
-	Short: "A brief description of your command",
+	Short: "LIST ALL ACTIONS",
 	Run: func(cmd *cobra.Command, args []string) {
 		for _, m := range actions {
 			items := wf.NewItem(m.item).Largetype(m.subtitle).Valid(true).Subtitle(m.subtitle).Icon(m.icon).Title(m.item).Autocomplete(m.item)
@@ -33,14 +33,4 @@ var actionsCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(actionsCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// actionsCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// actionsCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

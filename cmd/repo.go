@@ -29,7 +29,7 @@ func (r Repository) FullName() string {
 // repoCmd represents the repo command
 var repoCmd = &cobra.Command{
 	Use:   "repo",
-	Short: "search github repo directly",
+	Short: "Searching Starred Repositories And My Repositories",
 	Args:  cobra.RangeArgs(0, 1),
 	Run: func(cmd *cobra.Command, args []string) {
 		repos, err := ListRepositories()
@@ -37,10 +37,7 @@ var repoCmd = &cobra.Command{
 			wf.FatalError(err)
 		}
 		for _, repo := range repos {
-			// alfred 内置 fuzzy filter, 不需要自己判断
 			url := repo.URL
-			// TODO 判断是否私有，不同的 icon
-			// TODO 语言，star 数量
 			items := wf.NewItem(repo.FullName()).Arg(url).Copytext(url).Quicklook(url).Largetype(repo.Description).Valid(true).Subtitle(repo.Description).Icon(&aw.Icon{Value: "icons/repo.png"}).Title(repo.FullName()).Autocomplete(repo.FullName())
 			items.Cmd().Subtitle("Press Enter to copy this url to clipboard")
 		}

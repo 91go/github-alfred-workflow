@@ -20,7 +20,7 @@ type My struct {
 // myCmd represents the my command
 var myCmd = &cobra.Command{
 	Use:   "my",
-	Short: "list all my github shortcut actions",
+	Short: "LIST ALL MY GITHUB SHORTCUT ACTIONS",
 	Args:  cobra.RangeArgs(0, 1),
 	Run: func(cmd *cobra.Command, args []string) {
 		xxx := cacheUsername()
