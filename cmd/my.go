@@ -44,7 +44,7 @@ var myCmd = &cobra.Command{
 }
 
 func init() {
-	execCmd.AddCommand(myCmd)
+	listCmd.AddCommand(myCmd)
 }
 
 func cacheUsername() string {

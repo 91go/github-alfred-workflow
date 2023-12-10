@@ -16,7 +16,7 @@ var docsCmd = &cobra.Command{
 	Example: "icons/docs.svg",
 	Run: func(cmd *cobra.Command, args []string) {
 		markets := []Metadata{
-			{item: "docs", icon: &aw.Icon{Value: "icons/default.svg"}, url: "https://docs.github.com/%s"},
+			{item: "docs homepage", icon: &aw.Icon{Value: "icons/default.svg"}, url: "https://docs.github.com/%s"},
 			{item: "actions", icon: &aw.Icon{Value: "icons/default.svg"}, url: "https://docs.github.com/%s/actions"},
 			{item: "packages", icon: &aw.Icon{Value: "icons/default.svg"}, url: "https://docs.github.com/%s/packages"},
 			{item: "copilot", icon: &aw.Icon{Value: "icons/default.svg"}, url: "https://docs.github.com/%s/copilot"},
@@ -35,5 +35,5 @@ var docsCmd = &cobra.Command{
 }
 
 func init() {
-	execCmd.AddCommand(docsCmd)
+	listCmd.AddCommand(docsCmd)
 }

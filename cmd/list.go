@@ -10,10 +10,10 @@ var listCmd = &cobra.Command{
 	Use:   "list",
 	Short: "list all subcommands",
 	Run: func(cmd *cobra.Command, args []string) {
-		sub := execCmd.Commands()
+		sub := cmd.Commands()
 		for _, c := range sub {
 			if !c.Hidden {
-				wf.NewItem(c.Name()).Arg(c.Name()).Valid(true).Icon(&aw.Icon{Value: c.Example}).Title(c.Name()).Subtitle(c.Short).Autocomplete(c.Name())
+				wf.NewItem(c.Name()).Valid(false).Icon(&aw.Icon{Value: c.Example}).Title(c.Name()).Subtitle(c.Short).Autocomplete(c.Name())
 			}
 		}
 		if len(args) > 0 {

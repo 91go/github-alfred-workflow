@@ -11,10 +11,9 @@ import (
 )
 
 var (
-	repo = "91go/gh-alfredworkflow"
-	wf   *aw.Workflow
-	av   = aw.NewArgVars()
-	// gt    = "GITHUB_TOKEN"
+	repo  = "91go/gh-alfredworkflow"
+	wf    *aw.Workflow
+	av    = aw.NewArgVars()
 	token string
 )
 

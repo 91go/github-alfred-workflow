@@ -46,18 +46,17 @@ var repoCmd = &cobra.Command{
 			wf.Filter(args[0])
 		}
 		if !wf.IsRunning(updateReposJobName) {
-			cmd := exec.Command("./exe", "exec", "actions", updateReposJobName)
+			cmd := exec.Command("./exe", "list", "actions", updateReposJobName)
 			if err := wf.RunInBackground(updateReposJobName, cmd); err != nil {
 				ErrorHandle(err)
 			}
 		}
-
 		wf.SendFeedback()
 	},
 }
 
 func init() {
-	execCmd.AddCommand(repoCmd)
+	listCmd.AddCommand(repoCmd)
 }
 
 // Search from sqlite

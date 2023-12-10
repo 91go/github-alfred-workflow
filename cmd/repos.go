@@ -2,24 +2,27 @@ package cmd
 
 import (
 	"fmt"
-	"strings"
-
 	"github.com/91go/gh-alfredworkflow/utils"
 	aw "github.com/deanishe/awgo"
 	"github.com/spf13/cobra"
+	"strings"
 )
 
 // repoSearchCmd represents the repoSearch command
 var repoSearchCmd = &cobra.Command{
 	Use:     "repos",
 	Short:   "Searching repositories from github",
-	Args:    cobra.RangeArgs(1, 4),
+	Args:    cobra.RangeArgs(0, 4),
 	Example: "icons/repos.svg",
 	Run: func(cmd *cobra.Command, args []string) {
 		// priority list
-		xs := fmt.Sprintf("https://github.com/search?q=%s&type=repositories", strings.Join(args[0:], "+"))
-		wf.NewItem("Search on github").Arg(xs).Valid(true).Icon(&aw.Icon{Value: "icons/repo.png"}).Title("Searching on github").Subtitle("searching...")
-		// wf.Rerun(0.1)
+		if len(args) == 0 {
+			wf.NewItem("Search on github").Arg("https://github.com/search?type=repositories").Valid(true).Icon(&aw.Icon{Value: "icons/repo.png"}).Title("Searching on github").Subtitle("searching...")
+		} else {
+			xs := fmt.Sprintf("https://github.com/search?q=%s&type=repositories", strings.Join(args[0:], "+"))
+			wf.NewItem("Search on github").Arg(xs).Valid(true).Icon(&aw.Icon{Value: "icons/repo.png"}).Title("Searching on github").Subtitle("searching...")
+			// wf.Rerun(0.1)
+		}
 
 		if len(args) == 1 {
 			repos, err := utils.NewGithubClient(token).SearchRepositories(args[0])
@@ -45,5 +48,5 @@ var repoSearchCmd = &cobra.Command{
 }
 
 func init() {
-	execCmd.AddCommand(repoSearchCmd)
+	listCmd.AddCommand(repoSearchCmd)
 }

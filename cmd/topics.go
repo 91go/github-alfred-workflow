@@ -1,10 +1,8 @@
-/*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
 	"fmt"
+	"github.com/samber/lo"
 	"strings"
 
 	"github.com/spf13/cobra"
@@ -20,7 +18,9 @@ var topicCmd = &cobra.Command{
 
 		if topics := wf.Config.GetString("topics"); topics != "" {
 			ts := strings.Split(topics, ";")
-			for i := 0; i < len(ts); i++ {
+			// sanitize topics
+			tsN := lo.WithoutEmpty(ts)
+			for i := 0; i < len(tsN); i++ {
 				wf.NewItem(ts[i]).Title(ts[i]).Subtitle(fmt.Sprintf("Looking for %s trending", ts[i])).Arg(fmt.Sprintf(url, ts[i])).Valid(true)
 			}
 		}
@@ -38,5 +38,5 @@ var topicCmd = &cobra.Command{
 }
 
 func init() {
-	execCmd.AddCommand(topicCmd)
+	listCmd.AddCommand(topicCmd)
 }

@@ -1,6 +1,3 @@
-/*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
@@ -29,7 +26,7 @@ var trendCmd = &cobra.Command{
 }
 
 func init() {
-	execCmd.AddCommand(trendCmd)
+	listCmd.AddCommand(trendCmd)
 
 	// Here you will define your flags and configuration settings.
 

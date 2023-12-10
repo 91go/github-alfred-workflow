@@ -27,5 +27,5 @@ var marketCmd = &cobra.Command{
 }
 
 func init() {
-	execCmd.AddCommand(marketCmd)
+	listCmd.AddCommand(marketCmd)
 }
