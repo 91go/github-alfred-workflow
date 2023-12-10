@@ -2,8 +2,9 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/samber/lo"
 	"strings"
+
+	"github.com/samber/lo"
 
 	"github.com/spf13/cobra"
 )

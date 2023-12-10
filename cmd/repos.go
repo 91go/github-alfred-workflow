@@ -2,10 +2,11 @@ package cmd
 
 import (
 	"fmt"
+	"strings"
+
 	"github.com/91go/gh-alfredworkflow/utils"
 	aw "github.com/deanishe/awgo"
 	"github.com/spf13/cobra"
-	"strings"
 )
 
 // repoSearchCmd represents the repoSearch command

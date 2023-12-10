@@ -1,6 +1,3 @@
-/*
-Copyright ©
-*/
 package main
 
 import (
