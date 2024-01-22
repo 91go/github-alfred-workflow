@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"os/exec"
+	"strings"
 	"time"
 
 	"github.com/91go/gh-alfredworkflow/utils"
@@ -13,6 +14,11 @@ import (
 )
 
 const updateReposJobName = "sync"
+
+const (
+	GistSearch = "https://gist.github.com/search?q=%s"
+	RepoSearch = "https://github.com/search?q=%s&type=repositories"
+)
 
 type Repository struct {
 	LastUpdated time.Time
@@ -28,29 +34,47 @@ func (r Repository) FullName() string {
 
 // repoCmd represents the repo command
 var repoCmd = &cobra.Command{
-	Use:     "repo",
-	Short:   "Searching from starred repositories and my repositories",
-	Args:    cobra.RangeArgs(0, 1),
+	Use:   "repo",
+	Short: "Searching from starred repositories and my repositories",
+	// Args:    cobra.RangeArgs(0, 2),
 	Example: "icons/repo.svg",
-	Run: func(cmd *cobra.Command, args []string) {
-		repos, err := ListRepositories()
-		if err != nil {
-			wf.FatalError(err)
-		}
-		for _, repo := range repos {
-			url := repo.URL
-			items := wf.NewItem(repo.FullName()).Arg(url).Copytext(url).Quicklook(url).Largetype(repo.Description).Valid(true).Subtitle(repo.Description).Icon(&aw.Icon{Value: "icons/repo.png"}).Title(repo.FullName()).Autocomplete(repo.FullName())
-			items.Cmd().Subtitle("Press Enter to copy this url to clipboard")
-		}
-		if len(args) > 0 {
-			wf.Filter(args[0])
-		}
+	PostRun: func(cmd *cobra.Command, args []string) {
 		if !wf.IsRunning(updateReposJobName) {
 			cmd := exec.Command("./exe", "list", "actions", updateReposJobName)
 			if err := wf.RunInBackground(updateReposJobName, cmd); err != nil {
 				ErrorHandle(err)
 			}
 		}
+	},
+	Run: func(cmd *cobra.Command, args []string) {
+		repos, err := ListRepositories()
+		if err != nil {
+			wf.FatalError(err)
+		}
+
+		for _, repo := range repos {
+			url := repo.URL
+			item := wf.NewItem(repo.FullName()).
+				Arg(url).
+				Copytext(url).
+				Valid(true).
+				Subtitle(repo.Description).
+				Icon(&aw.Icon{Value: "icons/repo.png"}).
+				Title(repo.FullName()).
+				Autocomplete(repo.FullName())
+			item.Cmd().Subtitle("Press Enter to copy this url to clipboard")
+		}
+
+		if len(args) > 0 {
+			wf.Filter(args[0])
+		}
+
+		wf.NewItem("Search on github").
+			Arg(fmt.Sprintf(RepoSearch, strings.Join(args, "+"))).
+			Valid(true).
+			Icon(&aw.Icon{Value: "icons/repo.png"}).
+			Title("Searching on github").
+			Subtitle(fmt.Sprintf("%s %s", "searching...", strings.Join(args, " ")))
 		wf.SendFeedback()
 	},
 }
