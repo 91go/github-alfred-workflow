@@ -59,7 +59,7 @@ var repoCmd = &cobra.Command{
 				Copytext(url).
 				Valid(true).
 				Subtitle(repo.Description).
-				Icon(&aw.Icon{Value: "icons/repo.png"}).
+				Icon(&aw.Icon{Value: "icons/repo.svg"}).
 				Title(repo.FullName()).
 				Autocomplete(repo.FullName())
 			item.Cmd().Subtitle("Press Enter to copy this url to clipboard")
@@ -69,12 +69,19 @@ var repoCmd = &cobra.Command{
 			wf.Filter(args[0])
 		}
 
-		wf.NewItem("Search on github").
+		wf.NewItem("Search On Github").
 			Arg(fmt.Sprintf(RepoSearch, strings.Join(args, "+"))).
 			Valid(true).
-			Icon(&aw.Icon{Value: "icons/repo.png"}).
-			Title("Searching on github").
+			Icon(&aw.Icon{Value: "icons/search.svg"}).
+			Title("Searching On Github").
 			Subtitle(fmt.Sprintf("%s %s", "searching...", strings.Join(args, " ")))
+		wf.NewItem("Search On Github Gist").
+			Arg(fmt.Sprintf(GistSearch, strings.Join(args, "+"))).
+			Valid(true).
+			Icon(&aw.Icon{Value: "icons/gist.svg"}).
+			Title("Searching On Github Gist").
+			Subtitle(fmt.Sprintf("%s %s", "searching...", strings.Join(args, " ")))
+
 		wf.SendFeedback()
 	},
 }

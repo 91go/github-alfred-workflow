@@ -12,19 +12,18 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var actions = []Metadata{
-	{item: "actions token", subtitle: "Enter to set github token", icon: &aw.Icon{Value: "icons/actions-token.svg"}},
-	{item: "actions sync", subtitle: "Enter to flush repositories local database", icon: &aw.Icon{Value: "icons/actions-sync.svg"}},
-	{item: "actions update", subtitle: "Enter to check workflow's update", icon: &aw.Icon{Value: "icons/actions-update.svg"}},
-	{item: "actions clean", subtitle: "Enter to clear caches", icon: &aw.Icon{Value: "icons/actions-clean.svg"}},
-}
-
 // actionsCmd represents the actions command
 var actionsCmd = &cobra.Command{
 	Use:     "actions",
 	Short:   "Common Operations",
 	Example: "icons/actions.svg",
 	Run: func(cmd *cobra.Command, args []string) {
+		var actions = []Metadata{
+			{item: "actions token", subtitle: "Enter to set github token", icon: &aw.Icon{Value: "icons/actions-token.svg"}},
+			// {item: "actions sync", subtitle: "Enter to flush repositories local database", icon: &aw.Icon{Value: "icons/actions-sync.svg"}},
+			// {item: "actions update", subtitle: "Enter to check workflow's update", icon: &aw.Icon{Value: "icons/actions-update.svg"}},
+			{item: "actions clean", subtitle: "Enter to clear caches", icon: &aw.Icon{Value: "icons/actions-clean.svg"}},
+		}
 		for _, m := range actions {
 			wf.NewItem(m.item).Valid(false).Subtitle(m.subtitle).Icon(m.icon).Autocomplete(m.item).Title(m.item)
 		}
@@ -33,19 +32,19 @@ var actionsCmd = &cobra.Command{
 }
 
 // updateCmd represents the update command
-var updateCmd = &cobra.Command{
-	Use:   "update",
-	Short: "UPDATE WORKFLOW",
-	Run: func(cmd *cobra.Command, args []string) {
-		if err := wf.CheckForUpdate(); err != nil {
-			// wf.FatalError(err)
-			wf.NewWarningItem("No Available Releases Found.", "Please check later.").Valid(false).Title("No Available Releases Found.")
-			wf.SendFeedback()
-		}
-		wf.NewItem("Workflow Release is Available.").Valid(false).Title("Workflow Release is Available.")
-		wf.SendFeedback()
-	},
-}
+// var updateCmd = &cobra.Command{
+// 	Use:   "update",
+// 	Short: "UPDATE WORKFLOW",
+// 	Run: func(cmd *cobra.Command, args []string) {
+// 		if err := wf.CheckForUpdate(); err != nil {
+// 			// wf.FatalError(err)
+// 			wf.NewWarningItem("No Available Releases Found.", "Please check later.").Valid(false).Title("No Available Releases Found.")
+// 			wf.SendFeedback()
+// 		}
+// 		wf.NewItem("Workflow Release is Available.").Valid(false).Title("Workflow Release is Available.")
+// 		wf.SendFeedback()
+// 	},
+// }
 
 // func CheckForUpdate() {
 // 	if wf.UpdateCheckDue() && !wf.IsRunning(updateJobName) {
@@ -106,7 +105,6 @@ var pruneCmd = &cobra.Command{
 // syncCmd represents the updateRepos command
 var syncCmd = &cobra.Command{
 	Use:    "sync",
-	Short:  "A brief description of your command",
 	Hidden: true,
 	Run: func(cmd *cobra.Command, args []string) {
 		if _, err := UpdateRepositories(token); err != nil {
@@ -120,7 +118,7 @@ var syncCmd = &cobra.Command{
 
 func init() {
 	listCmd.AddCommand(actionsCmd)
-	actionsCmd.AddCommand(updateCmd)
+	// actionsCmd.AddCommand(updateCmd)
 	actionsCmd.AddCommand(tokenCmd)
 	actionsCmd.AddCommand(pruneCmd)
 	actionsCmd.AddCommand(syncCmd)
