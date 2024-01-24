@@ -18,8 +18,8 @@ CREATE TABLE IF NOT EXISTS repository (
     updated_at timestamp
 )`
 
-func OpenDB() (*sql.DB, error) {
-	db, err := sql.Open("sqlite3", "./sqlite.db")
+func OpenDB(dbPath string) (*sql.DB, error) {
+	db, err := sql.Open("sqlite3", dbPath)
 	if err != nil {
 		return nil, err
 	}

@@ -1,10 +1,15 @@
 package cmd
 
 import (
+	"errors"
 	"fmt"
+	"io"
+	"os"
 	"os/exec"
 	"strings"
 	"time"
+
+	"gopkg.in/yaml.v3"
 
 	"github.com/91go/gh-alfredworkflow/utils"
 
@@ -13,7 +18,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const updateReposJobName = "sync"
+const syncJob = "sync"
 
 const (
 	GistSearch = "https://gist.github.com/search?q=%s"
@@ -28,6 +33,11 @@ type Repository struct {
 	Description string
 }
 
+type Repo struct {
+	Feat string `yaml:"feat"`
+	Name string `yaml:"name"`
+}
+
 func (r Repository) FullName() string {
 	return fmt.Sprintf("%s/%s", r.User, r.Name)
 }
@@ -39,9 +49,9 @@ var repoCmd = &cobra.Command{
 	// Args:    cobra.RangeArgs(0, 2),
 	Example: "icons/repo.svg",
 	PostRun: func(cmd *cobra.Command, args []string) {
-		if !wf.IsRunning(updateReposJobName) {
-			cmd := exec.Command("./exe", "list", "actions", updateReposJobName)
-			if err := wf.RunInBackground(updateReposJobName, cmd); err != nil {
+		if !wf.IsRunning(syncJob) {
+			cmd := exec.Command("./exe", "list", "actions", syncJob)
+			if err := wf.RunInBackground(syncJob, cmd); err != nil {
 				ErrorHandle(err)
 			}
 		}
@@ -52,16 +62,48 @@ var repoCmd = &cobra.Command{
 			wf.FatalError(err)
 		}
 
+		var ghs []Repo
+		fy := wf.Cache.Dir + "/gh.yml"
+		if wf.Cache.Exists(fy) {
+
+			f, err := os.Open(fy)
+			if err != nil {
+				return
+			}
+			d := yaml.NewDecoder(f)
+
+			for {
+				err := d.Decode(&ghs)
+				if ghs == nil {
+					continue
+				}
+				if errors.Is(err, io.EOF) {
+					break
+				}
+				if err != nil {
+					panic(err)
+				}
+			}
+		}
+
 		for _, repo := range repos {
 			url := repo.URL
+
 			item := wf.NewItem(repo.FullName()).
 				Arg(url).
 				Copytext(url).
 				Valid(true).
-				Subtitle(repo.Description).
-				Icon(&aw.Icon{Value: "icons/repo.svg"}).
 				Title(repo.FullName()).
 				Autocomplete(repo.FullName())
+
+			for _, gh := range ghs {
+				if gh.Name == url {
+					item.Icon(&aw.Icon{Value: "icons/arrow.svg"}).Subtitle(gh.Feat)
+				} else {
+					item.Icon(&aw.Icon{Value: "icons/repo.svg"}).Subtitle(repo.Description)
+				}
+			}
+
 			item.Cmd().Subtitle("Press Enter to copy this url to clipboard")
 		}
 
@@ -92,7 +134,7 @@ func init() {
 
 // Search from sqlite
 func ListRepositories() ([]Repository, error) {
-	db, err := utils.OpenDB()
+	db, err := utils.OpenDB(wf.CacheDir() + "/repo.db")
 	if err != nil {
 		return nil, err
 	}

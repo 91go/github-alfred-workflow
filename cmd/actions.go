@@ -2,7 +2,9 @@ package cmd
 
 import (
 	"fmt"
+	"io"
 	"log"
+	"net/http"
 	"time"
 
 	"github.com/91go/gh-alfredworkflow/utils"
@@ -18,7 +20,7 @@ var actionsCmd = &cobra.Command{
 	Short:   "Common Operations",
 	Example: "icons/actions.svg",
 	Run: func(cmd *cobra.Command, args []string) {
-		var actions = []Metadata{
+		actions := []Metadata{
 			{item: "actions token", subtitle: "Enter to set github token", icon: &aw.Icon{Value: "icons/actions-token.svg"}},
 			// {item: "actions sync", subtitle: "Enter to flush repositories local database", icon: &aw.Icon{Value: "icons/actions-sync.svg"}},
 			// {item: "actions update", subtitle: "Enter to check workflow's update", icon: &aw.Icon{Value: "icons/actions-update.svg"}},
@@ -107,10 +109,31 @@ var syncCmd = &cobra.Command{
 	Use:    "sync",
 	Hidden: true,
 	Run: func(cmd *cobra.Command, args []string) {
+		// sync repo
 		if _, err := UpdateRepositories(token); err != nil {
 			wf.NewWarningItem("Sync Failed.", err.Error()).Valid(false).Title("Sync Failed.")
 			wf.SendFeedback()
 		}
+
+		// gh.yml
+		url := wf.Config.GetString("url")
+		if url != "" {
+			resp, err := http.Get(url)
+			if err != nil {
+				return
+			}
+			defer resp.Body.Close()
+
+			data, err := io.ReadAll(resp.Body)
+			if err != nil {
+				return
+			}
+			err = wf.Cache.Store("gh.yml", data)
+			if err != nil {
+				return
+			}
+		}
+
 		wf.NewItem("Sync Repos Successfully.").Title("Sync Repos Successfully.").Valid(false)
 		wf.SendFeedback()
 	},
@@ -135,7 +158,7 @@ func UpdateRepositories(token string) (int64, error) {
 		return 0, err
 	}
 
-	db, err := utils.OpenDB()
+	db, err := utils.OpenDB(wf.CacheDir() + "/repo.db")
 	if err != nil {
 		return 0, err
 	}

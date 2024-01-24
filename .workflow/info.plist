@@ -229,7 +229,7 @@
 				<key>placeholder</key>
 				<string></string>
 				<key>required</key>
-				<false/>
+				<true/>
 				<key>trim</key>
 				<true/>
 			</dict>
@@ -246,28 +246,7 @@
 			<key>config</key>
 			<dict>
 				<key>default</key>
-				<string>chrome;chrome-extension;raycast;docusaurus;</string>
-				<key>required</key>
-				<false/>
-				<key>trim</key>
-				<false/>
-				<key>verticalsize</key>
-				<integer>6</integer>
-			</dict>
-			<key>description</key>
-			<string>You can add the desired topic here for daily viewing.Please separate topics with ";", For example: k8s;etcd;chrome;alfred...etc</string>
-			<key>label</key>
-			<string>Custom Topics</string>
-			<key>type</key>
-			<string>textarea</string>
-			<key>variable</key>
-			<string>topics</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>default</key>
-				<string>en</string>
+				<string>https://cdn.wrss.top/f/gh.yml</string>
 				<key>placeholder</key>
 				<string></string>
 				<key>required</key>
@@ -276,30 +255,13 @@
 				<true/>
 			</dict>
 			<key>description</key>
-			<string>Chinese: zh
-English: en
-German: de
-Spanish: es
-French: fr
-Japanese: ja
-Russian: ru
-Korean: ko
-Portuguese: pt
-Italian: it
-Dutch: nl
-Swedish: sv
-Polish: pl
-Greek: el
-Czech: cs
-Hungarian: hu
-Romanian: ro
-Turkish: tr</string>
+			<string></string>
 			<key>label</key>
-			<string>Language</string>
+			<string></string>
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
-			<string>lang</string>
+			<string>url</string>
 		</dict>
 	</array>
 	<key>version</key>
