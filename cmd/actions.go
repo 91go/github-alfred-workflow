@@ -128,7 +128,7 @@ var syncCmd = &cobra.Command{
 			if err != nil {
 				return
 			}
-			err = wf.Cache.Store("gh.yml", data)
+			err = wf.Cache.Store(CustomRepo, data)
 			if err != nil {
 				return
 			}
@@ -148,11 +148,13 @@ func init() {
 }
 
 func UpdateRepositories(token string) (int64, error) {
+	// my repos
 	userRepos, err := utils.NewGithubClient(token).ListUserRepositories()
 	if err != nil {
 		return 0, err
 	}
 
+	// starred repos
 	starredRepos, err := utils.NewGithubClient(token).ListStarredRepositories()
 	if err != nil {
 		return 0, err

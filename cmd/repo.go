@@ -1,14 +1,12 @@
 package cmd
 
 import (
-	"errors"
 	"fmt"
-	"io"
-	"os"
 	"os/exec"
 	"strings"
 	"time"
 
+	"github.com/samber/lo"
 	"gopkg.in/yaml.v3"
 
 	"github.com/91go/gh-alfredworkflow/utils"
@@ -19,6 +17,8 @@ import (
 )
 
 const syncJob = "sync"
+
+const CustomRepo = "gh.yml"
 
 const (
 	GistSearch = "https://gist.github.com/search?q=%s"
@@ -34,7 +34,7 @@ type Repository struct {
 }
 
 type Repo struct {
-	Feat string `yaml:"feat"`
+	Feat string `yaml:"feat,omitempty"`
 	Name string `yaml:"name"`
 }
 
@@ -44,9 +44,8 @@ func (r Repository) FullName() string {
 
 // repoCmd represents the repo command
 var repoCmd = &cobra.Command{
-	Use:   "repo",
-	Short: "Searching from starred repositories and my repositories",
-	// Args:    cobra.RangeArgs(0, 2),
+	Use:     "repo",
+	Short:   "Searching from starred repositories and my repositories",
 	Example: "icons/repo.svg",
 	PostRun: func(cmd *cobra.Command, args []string) {
 		if !wf.IsRunning(syncJob) {
@@ -62,27 +61,19 @@ var repoCmd = &cobra.Command{
 			wf.FatalError(err)
 		}
 
-		var ghs []Repo
-		fy := wf.Cache.Dir + "/gh.yml"
-		if wf.Cache.Exists(fy) {
-
-			f, err := os.Open(fy)
+		var list []string
+		if wf.Cache.Exists(CustomRepo) {
+			var ghs []Repo
+			f, err := wf.Cache.Load(CustomRepo)
 			if err != nil {
 				return
 			}
-			d := yaml.NewDecoder(f)
-
-			for {
-				err := d.Decode(&ghs)
-				if ghs == nil {
-					continue
-				}
-				if errors.Is(err, io.EOF) {
-					break
-				}
-				if err != nil {
-					panic(err)
-				}
+			err = yaml.Unmarshal(f, &ghs)
+			if err != nil {
+				return
+			}
+			for _, gh := range ghs {
+				list = append(list, gh.Name)
 			}
 		}
 
@@ -91,17 +82,16 @@ var repoCmd = &cobra.Command{
 
 			item := wf.NewItem(repo.FullName()).
 				Arg(url).
+				Subtitle(repo.Description).
 				Copytext(url).
 				Valid(true).
 				Title(repo.FullName()).
 				Autocomplete(repo.FullName())
 
-			for _, gh := range ghs {
-				if gh.Name == url {
-					item.Icon(&aw.Icon{Value: "icons/arrow.svg"}).Subtitle(gh.Feat)
-				} else {
-					item.Icon(&aw.Icon{Value: "icons/repo.svg"}).Subtitle(repo.Description)
-				}
+			if lo.Contains(list, url) {
+				item.Icon(&aw.Icon{Value: "icons/check.svg"})
+			} else {
+				item.Icon(&aw.Icon{Value: "icons/repo.svg"})
 			}
 
 			item.Cmd().Subtitle("Press Enter to copy this url to clipboard")
