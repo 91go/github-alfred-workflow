@@ -15,7 +15,7 @@ var myCmd = &cobra.Command{
 	Use:     "my",
 	Short:   "List all my github shortcut actions",
 	Args:    cobra.RangeArgs(0, 1),
-	Example: "icons/me.svg",
+	Example: "icons/profile.png",
 	Run: func(cmd *cobra.Command, args []string) {
 		xxx := cacheUsername()
 

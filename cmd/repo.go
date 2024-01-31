@@ -46,7 +46,7 @@ func (r Repository) FullName() string {
 var repoCmd = &cobra.Command{
 	Use:     "repo",
 	Short:   "Searching from starred repositories and my repositories",
-	Example: "icons/repo.svg",
+	Example: "icons/repo.png",
 	PostRun: func(cmd *cobra.Command, args []string) {
 		if !wf.IsRunning(syncJob) {
 			cmd := exec.Command("./exe", "list", "actions", syncJob)
@@ -91,7 +91,7 @@ var repoCmd = &cobra.Command{
 			if lo.Contains(list, url) {
 				item.Icon(&aw.Icon{Value: "icons/check.svg"})
 			} else {
-				item.Icon(&aw.Icon{Value: "icons/repo.svg"})
+				item.Icon(&aw.Icon{Value: "icons/repo.png"})
 			}
 
 			item.Cmd().Subtitle("Press Enter to copy this url to clipboard")
@@ -110,7 +110,7 @@ var repoCmd = &cobra.Command{
 		wf.NewItem("Search On Github Gist").
 			Arg(fmt.Sprintf(GistSearch, strings.Join(args, "+"))).
 			Valid(true).
-			Icon(&aw.Icon{Value: "icons/gist.svg"}).
+			Icon(&aw.Icon{Value: "icons/gists.png"}).
 			Title("Searching On Github Gist").
 			Subtitle(fmt.Sprintf("%s %s", "searching...", strings.Join(args, " ")))
 

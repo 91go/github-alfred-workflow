@@ -18,7 +18,7 @@ import (
 var actionsCmd = &cobra.Command{
 	Use:     "actions",
 	Short:   "Common Operations",
-	Example: "icons/actions.svg",
+	Example: "icons/settings.png",
 	Run: func(cmd *cobra.Command, args []string) {
 		actions := []Metadata{
 			{item: "actions token", subtitle: "Enter to set github token", icon: &aw.Icon{Value: "icons/actions-token.svg"}},
