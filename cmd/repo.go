@@ -6,7 +6,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/samber/lo"
 	"gopkg.in/yaml.v3"
 
 	"github.com/91go/gh-alfredworkflow/utils"
@@ -27,16 +26,17 @@ const (
 
 type Repository struct {
 	LastUpdated time.Time
-	URL         string
+	URL         string `yaml:"url"`
 	Name        string
 	User        string
 	Description string
+	IsStar      bool
 }
 
-type Repo struct {
-	Feat string `yaml:"feat,omitempty"`
-	Name string `yaml:"name"`
-}
+// type Repo struct {
+// 	// Feat string `yaml:"feat,omitempty"`
+// 	Name string
+// }
 
 func (r Repository) FullName() string {
 	return fmt.Sprintf("%s/%s", r.User, r.Name)
@@ -61,9 +61,9 @@ var repoCmd = &cobra.Command{
 			wf.FatalError(err)
 		}
 
-		var list []string
+		var ghs []Repository
 		if wf.Cache.Exists(CustomRepo) {
-			var ghs []Repo
+
 			f, err := wf.Cache.Load(CustomRepo)
 			if err != nil {
 				return
@@ -72,12 +72,18 @@ var repoCmd = &cobra.Command{
 			if err != nil {
 				return
 			}
-			for _, gh := range ghs {
-				list = append(list, gh.Name)
+
+			for i, gh := range ghs {
+				sx, _ := strings.CutPrefix(gh.URL, "https://github.com/")
+				ghs[i].User = strings.Split(sx, "/")[0]
+				ghs[i].Name = strings.Split(sx, "/")[1]
+				ghs[i].IsStar = true
 			}
 		}
 
-		for _, repo := range repos {
+		repos = append(ghs, repos...)
+
+		for _, repo := range removeDuplicates(repos) {
 			url := repo.URL
 
 			item := wf.NewItem(repo.FullName()).
@@ -88,7 +94,7 @@ var repoCmd = &cobra.Command{
 				Title(repo.FullName()).
 				Autocomplete(repo.FullName())
 
-			if lo.Contains(list, url) {
+			if repo.IsStar {
 				item.Icon(&aw.Icon{Value: "icons/check.svg"})
 			} else {
 				item.Icon(&aw.Icon{Value: "icons/repo.png"})
@@ -150,8 +156,23 @@ func ListRepositories() ([]Repository, error) {
 			User:        user,
 			Description: descr,
 			LastUpdated: updated,
+			IsStar:      false,
 		})
 	}
 
 	return repos, nil
+}
+
+func removeDuplicates(ts []Repository) []Repository {
+	uniqueValues := make(map[string]bool)
+	result := make([]Repository, 0)
+
+	for _, t := range ts {
+		if !uniqueValues[t.URL] {
+			uniqueValues[t.URL] = true
+			result = append(result, t)
+		}
+	}
+
+	return result
 }
