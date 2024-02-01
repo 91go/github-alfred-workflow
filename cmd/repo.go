@@ -29,7 +29,7 @@ type Repository struct {
 	URL         string `yaml:"url"`
 	Name        string
 	User        string
-	Description string
+	Description string `yaml:"des,omitempty"`
 	IsStar      bool
 }
 
@@ -70,6 +70,7 @@ var repoCmd = &cobra.Command{
 			}
 			err = yaml.Unmarshal(f, &ghs)
 			if err != nil {
+				fmt.Println(err)
 				return
 			}
 
