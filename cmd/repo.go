@@ -1,7 +1,10 @@
 package cmd
 
 import (
+	"bytes"
+	"errors"
 	"fmt"
+	"io"
 	"os/exec"
 	"strings"
 	"time"
@@ -33,11 +36,6 @@ type Repository struct {
 	IsStar      bool
 }
 
-// type Repo struct {
-// 	// Feat string `yaml:"feat,omitempty"`
-// 	Name string
-// }
-
 func (r Repository) FullName() string {
 	return fmt.Sprintf("%s/%s", r.User, r.Name)
 }
@@ -68,10 +66,20 @@ var repoCmd = &cobra.Command{
 			if err != nil {
 				return
 			}
-			err = yaml.Unmarshal(f, &ghs)
-			if err != nil {
-				fmt.Println(err)
-				return
+
+			d := yaml.NewDecoder(bytes.NewReader(f))
+			for {
+				// create new spec here
+				spec := new([]Repository)
+				// pass a reference to spec reference
+				if err := d.Decode(&spec); err != nil {
+					// break the loop in case of EOF
+					if errors.Is(err, io.EOF) {
+						break
+					}
+					panic(err)
+				}
+				ghs = append(ghs, *spec...)
 			}
 
 			for i, gh := range ghs {
