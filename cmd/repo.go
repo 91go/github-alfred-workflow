@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"log"
 	"os/exec"
 	"strings"
 	"time"
@@ -23,6 +24,7 @@ const syncJob = "sync"
 const CustomRepo = "gh.yml"
 
 const (
+	GhURL      = "https://github.com/"
 	GistSearch = "https://gist.github.com/search?q=%s"
 	RepoSearch = "https://github.com/search?q=%s&type=repositories"
 )
@@ -83,10 +85,14 @@ var repoCmd = &cobra.Command{
 			}
 
 			for i, gh := range ghs {
-				sx, _ := strings.CutPrefix(gh.URL, "https://github.com/")
-				ghs[i].User = strings.Split(sx, "/")[0]
-				ghs[i].Name = strings.Split(sx, "/")[1]
-				ghs[i].IsStar = true
+				if strings.Contains(gh.URL, GhURL) {
+					sx, _ := strings.CutPrefix(gh.URL, GhURL)
+					ghs[i].User = strings.Split(sx, "/")[0]
+					ghs[i].Name = strings.Split(sx, "/")[1]
+					ghs[i].IsStar = true
+				} else {
+					log.Printf("Invalid URL: %s", gh.URL)
+				}
 			}
 		}
 
