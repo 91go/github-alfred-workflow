@@ -264,6 +264,15 @@
 			<string>url</string>
 		</dict>
 	</array>
+	<key>variables</key>
+	<dict>
+		<key>username</key>
+		<string>hxhac</string>
+	</dict>
+	<key>variablesdontexport</key>
+	<array>
+		<string>username</string>
+	</array>
 	<key>version</key>
 	<string>1.5.0</string>
 	<key>webaddress</key>

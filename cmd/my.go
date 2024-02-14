@@ -2,9 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"time"
-
-	"github.com/91go/gh-alfredworkflow/utils"
 
 	aw "github.com/deanishe/awgo"
 	"github.com/spf13/cobra"
@@ -48,10 +45,20 @@ func init() {
 }
 
 func cacheUsername() string {
-	reload := func() ([]byte, error) {
-		username := utils.NewGithubClient(token).GetUsername()
-		return []byte(username), nil
-	}
-	store, _ := wf.Cache.LoadOrStore("username", time.Duration(0), reload)
-	return string(store)
+	// reload := func() ([]byte, error) {
+	// 	username := utils.NewGithubClient(token).GetUsername()
+	// 	return []byte(username), nil
+	// }
+	// store, _ := wf.Cache.LoadOrStore("username", time.Duration(0), reload)
+	// return string(store)
+
+	username := wf.Config.Get("username")
+
+	return username
+
+	// if username != "" {
+	// 	return username
+	// }
+	//
+	// return utils.NewGithubClient(token).GetUsername()
 }

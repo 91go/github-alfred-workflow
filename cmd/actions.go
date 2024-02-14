@@ -85,7 +85,8 @@ var tokenCmd = &cobra.Command{
 			wf.NewWarningItem("Store Token Failed.", err.Error()).Valid(false).Title("Store Token Failed.")
 			wf.SendFeedback()
 		}
-		wf.SendFeedback().NewItem("Set Token Successfully.")
+		wf.NewItem("Set Token Successfully.").Title("Set Token Successfully.")
+		wf.SendFeedback()
 	},
 }
 
@@ -95,7 +96,12 @@ var pruneCmd = &cobra.Command{
 	Short: "CLEAR CACHES",
 	Run: func(cmd *cobra.Command, args []string) {
 		// 删除 my.json
-		if err := wf.ClearCache(); err != nil {
+		// if err := wf.ClearCache(); err != nil {
+		// 	wf.NewWarningItem("Clear Caches Failed.", err.Error()).Valid(false).Title("Clear Caches Failed.")
+		// 	wf.SendFeedback()
+		// }
+
+		if err := wf.Config.Set("username", utils.NewGithubClient(token).GetUsername(), false).Do(); err != nil {
 			wf.NewWarningItem("Clear Caches Failed.", err.Error()).Valid(false).Title("Clear Caches Failed.")
 			wf.SendFeedback()
 		}
