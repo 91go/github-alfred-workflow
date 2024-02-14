@@ -120,21 +120,19 @@ var repoCmd = &cobra.Command{
 
 		if len(args) > 0 {
 			wf.Filter(args[0])
+			// wf.Feedback.Filter(args[0], fuzzy.Sorter{})
 		}
 
-		wf.NewItem("Search On Github").
+		wf.NewItem("Search Github").
 			Arg(fmt.Sprintf(RepoSearch, strings.Join(args, "+"))).
 			Valid(true).
 			Icon(&aw.Icon{Value: "icons/search.svg"}).
-			Title("Searching On Github").
-			Subtitle(fmt.Sprintf("%s %s", "searching...", strings.Join(args, " ")))
-		wf.NewItem("Search On Github Gist").
+			Title(fmt.Sprintf("Search Github For '%s'", strings.Join(args, " ")))
+		wf.NewItem("Search Gist").
 			Arg(fmt.Sprintf(GistSearch, strings.Join(args, "+"))).
 			Valid(true).
 			Icon(&aw.Icon{Value: "icons/gists.png"}).
-			Title("Searching On Github Gist").
-			Subtitle(fmt.Sprintf("%s %s", "searching...", strings.Join(args, " ")))
-
+			Title(fmt.Sprintf("Search Gist For '%s'", strings.Join(args, " ")))
 		wf.SendFeedback()
 	},
 }
