@@ -115,7 +115,7 @@ var repoCmd = &cobra.Command{
 				item.Icon(&aw.Icon{Value: "icons/repo.png"})
 			}
 
-			item.Cmd().Subtitle("Press Enter to copy this url to clipboard")
+			item.Cmd().Subtitle("Preview Description in Markdown Format").Arg(repo.Description)
 		}
 
 		if len(args) > 0 {
