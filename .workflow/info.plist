@@ -170,9 +170,9 @@
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
-				<string>Search Repository</string>
+				<string></string>
 				<key>title</key>
-				<string>ghr</string>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -304,7 +304,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>{var:ghm}</string>
+				<string>{var:my}</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -322,9 +322,9 @@
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
-				<string>List all my github shortcut actions</string>
+				<string></string>
 				<key>title</key>
-				<string>ghm</string>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -469,7 +469,7 @@
 			<key>config</key>
 			<dict>
 				<key>default</key>
-				<string>ghr</string>
+				<string>gh</string>
 				<key>placeholder</key>
 				<string></string>
 				<key>required</key>
@@ -511,7 +511,7 @@
 			<key>config</key>
 			<dict>
 				<key>default</key>
-				<string>ghm</string>
+				<string>mgh</string>
 				<key>placeholder</key>
 				<string></string>
 				<key>required</key>
@@ -526,7 +526,7 @@
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
-			<string>ghm</string>
+			<string>my</string>
 		</dict>
 	</array>
 	<key>variables</key>
