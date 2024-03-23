@@ -34,7 +34,8 @@ type Repository struct {
 	URL         string `yaml:"url"`
 	Name        string
 	User        string
-	Description string `yaml:"des,omitempty"`
+	Description string   `yaml:"des,omitempty"`
+	Qs          []string `yaml:"qs"`
 	IsStar      bool
 }
 
@@ -100,14 +101,21 @@ var repoCmd = &cobra.Command{
 
 		for _, repo := range removeDuplicates(repos) {
 			url := repo.URL
+			des := repo.Description
+			name := repo.FullName()
 
-			item := wf.NewItem(repo.FullName()).
+			if repo.Qs != nil {
+				name = "⭐ " + name
+				qx := addMarkdownListFormat(repo.Qs)
+				des = fmt.Sprintf("%s \n ## qs \n %s", repo.Description, qx)
+			}
+
+			item := wf.NewItem(name).Title(name).
 				Arg(url).
-				Subtitle(repo.Description).
+				Subtitle(des).
 				Copytext(url).
 				Valid(true).
-				Title(repo.FullName()).
-				Autocomplete(repo.FullName())
+				Autocomplete(name)
 
 			if repo.IsStar {
 				item.Icon(&aw.Icon{Value: "icons/check.svg"})
@@ -115,7 +123,7 @@ var repoCmd = &cobra.Command{
 				item.Icon(&aw.Icon{Value: "icons/repo.png"})
 			}
 
-			item.Cmd().Subtitle("Preview Description in Markdown Format").Arg(repo.Description)
+			item.Cmd().Subtitle("Preview Description in Markdown Format").Arg(des)
 		}
 
 		if len(args) > 0 {
@@ -188,4 +196,12 @@ func removeDuplicates(ts []Repository) []Repository {
 	}
 
 	return result
+}
+
+func addMarkdownListFormat(str []string) string {
+	var builder strings.Builder
+	for _, str := range str {
+		builder.WriteString(fmt.Sprintf("- %s\n", str))
+	}
+	return builder.String()
 }
