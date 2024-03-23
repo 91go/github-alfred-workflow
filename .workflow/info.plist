@@ -31,11 +31,50 @@
 				<false/>
 			</dict>
 		</array>
+		<key>7BDC63A5-5029-4A0E-9E1F-80BC559D1612</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>85434C51-2F32-4BF0-A265-239140241968</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>85434C51-2F32-4BF0-A265-239140241968</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AC0DFFB4-8CE3-450A-B94E-9E34D0A009F7</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>ABC2AF18-1866-49AA-B073-279F37F7E78C</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>C528C7C5-66A8-40B5-951C-93FD564B0A72</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>AC0DFFB4-8CE3-450A-B94E-9E34D0A009F7</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>196DE875-6EF7-4226-BD7A-9C6E4AD2D1B3</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -125,15 +164,15 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>./exe list $1 $2</string>
+				<string>./exe repo $1 $2</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
-				<string></string>
+				<string>Search Repository</string>
 				<key>title</key>
-				<string>Search Github</string>
+				<string>ghr</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -220,6 +259,125 @@
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>2</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>7BDC63A5-5029-4A0E-9E1F-80BC559D1612</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>{var:ghm}</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>./exe my $1 $2</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>List all my github shortcut actions</string>
+				<key>title</key>
+				<string>ghm</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>AC0DFFB4-8CE3-450A-B94E-9E34D0A009F7</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>skipqueryencode</key>
+				<false/>
+				<key>skipvarencode</key>
+				<false/>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>196DE875-6EF7-4226-BD7A-9C6E4AD2D1B3</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict>
+					<key>hotkey</key>
+					<string>1</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>85434C51-2F32-4BF0-A265-239140241968</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -232,7 +390,34 @@
 			<key>xpos</key>
 			<real>310</real>
 			<key>ypos</key>
-			<real>175</real>
+			<real>85</real>
+		</dict>
+		<key>196DE875-6EF7-4226-BD7A-9C6E4AD2D1B3</key>
+		<dict>
+			<key>xpos</key>
+			<real>765</real>
+			<key>ypos</key>
+			<real>375</real>
+		</dict>
+		<key>7BDC63A5-5029-4A0E-9E1F-80BC559D1612</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>github.com</string>
+			<key>xpos</key>
+			<real>30</real>
+			<key>ypos</key>
+			<real>370</real>
+		</dict>
+		<key>85434C51-2F32-4BF0-A265-239140241968</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>xpos</key>
+			<real>200</real>
+			<key>ypos</key>
+			<real>400</real>
 		</dict>
 		<key>ABC2AF18-1866-49AA-B073-279F37F7E78C</key>
 		<dict>
@@ -243,14 +428,23 @@
 			<key>xpos</key>
 			<real>30</real>
 			<key>ypos</key>
-			<real>175</real>
+			<real>85</real>
+		</dict>
+		<key>AC0DFFB4-8CE3-450A-B94E-9E34D0A009F7</key>
+		<dict>
+			<key>note</key>
+			<string>github.com</string>
+			<key>xpos</key>
+			<real>300</real>
+			<key>ypos</key>
+			<real>370</real>
 		</dict>
 		<key>B23E7AEC-B068-42C9-8FA2-37427A2B8498</key>
 		<dict>
 			<key>xpos</key>
 			<real>775</real>
 			<key>ypos</key>
-			<real>180</real>
+			<real>90</real>
 		</dict>
 		<key>C528C7C5-66A8-40B5-951C-93FD564B0A72</key>
 		<dict>
@@ -259,14 +453,14 @@
 			<key>xpos</key>
 			<real>210</real>
 			<key>ypos</key>
-			<real>205</real>
+			<real>115</real>
 		</dict>
 		<key>C5F714C1-F5BE-4779-8E1B-3BBDB7A9989C</key>
 		<dict>
 			<key>xpos</key>
 			<real>575</real>
 			<key>ypos</key>
-			<real>355</real>
+			<real>185</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
@@ -275,7 +469,7 @@
 			<key>config</key>
 			<dict>
 				<key>default</key>
-				<string>gh</string>
+				<string>ghr</string>
 				<key>placeholder</key>
 				<string></string>
 				<key>required</key>
@@ -312,6 +506,27 @@
 			<string>textfield</string>
 			<key>variable</key>
 			<string>url</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>ghm</string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string></string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>ghm</string>
 		</dict>
 	</array>
 	<key>variables</key>

@@ -2,31 +2,36 @@ package cmd
 
 import (
 	"fmt"
+	"io"
 	"log"
+	"net/http"
 	"time"
+
+	aw "github.com/deanishe/awgo"
+	"github.com/spf13/cobra"
 
 	"github.com/91go/gh-alfredworkflow/utils"
 	"github.com/google/go-github/v56/github"
 )
 
 // actionsCmd represents the actions command
-// var actionsCmd = &cobra.Command{
-// 	Use:     "actions",
-// 	Short:   "Common Operations",
-// 	Example: "icons/settings.png",
-// 	Run: func(cmd *cobra.Command, args []string) {
-// 		actions := []Metadata{
-// 			{item: "actions token", subtitle: "Enter to set github token", icon: &aw.Icon{Value: "icons/actions-token.svg"}},
-// 			// {item: "actions sync", subtitle: "Enter to flush repositories local database", icon: &aw.Icon{Value: "icons/actions-sync.svg"}},
-// 			// {item: "actions update", subtitle: "Enter to check workflow's update", icon: &aw.Icon{Value: "icons/actions-update.svg"}},
-// 			{item: "actions clean", subtitle: "Enter to clear caches", icon: &aw.Icon{Value: "icons/actions-clean.svg"}},
-// 		}
-// 		for _, m := range actions {
-// 			wf.NewItem(m.item).Valid(false).Subtitle(m.subtitle).Icon(m.icon).Autocomplete(m.item).Title(m.item)
-// 		}
-// 		wf.SendFeedback()
-// 	},
-// }
+var actionsCmd = &cobra.Command{
+	Use:     "actions",
+	Short:   "Common Operations",
+	Example: "icons/settings.png",
+	Run: func(cmd *cobra.Command, args []string) {
+		actions := []Metadata{
+			{item: "actions token", subtitle: "Enter to set github token", icon: &aw.Icon{Value: "icons/actions-token.svg"}},
+			// {item: "actions sync", subtitle: "Enter to flush repositories local database", icon: &aw.Icon{Value: "icons/actions-sync.svg"}},
+			// {item: "actions update", subtitle: "Enter to check workflow's update", icon: &aw.Icon{Value: "icons/actions-update.svg"}},
+			{item: "actions clean", subtitle: "Enter to clear caches", icon: &aw.Icon{Value: "icons/actions-clean.svg"}},
+		}
+		for _, m := range actions {
+			wf.NewItem(m.item).Valid(false).Subtitle(m.subtitle).Icon(m.icon).Autocomplete(m.item).Title(m.item)
+		}
+		wf.SendFeedback()
+	},
+}
 
 // updateCmd represents the update command
 // var updateCmd = &cobra.Command{
@@ -106,46 +111,46 @@ import (
 // }
 
 // syncCmd represents the updateRepos command
-// var syncCmd = &cobra.Command{
-// 	Use:    "sync",
-// 	Hidden: true,
-// 	Run: func(cmd *cobra.Command, args []string) {
-// 		// sync repo
-// 		if _, err := UpdateRepositories(token); err != nil {
-// 			wf.NewWarningItem("Sync Failed.", err.Error()).Valid(false).Title("Sync Failed.")
-// 			wf.SendFeedback()
-// 		}
-//
-// 		// gh.yml
-// 		url := wf.Config.GetString("url")
-// 		if url != "" {
-// 			resp, err := http.Get(url)
-// 			if err != nil {
-// 				return
-// 			}
-// 			defer resp.Body.Close()
-//
-// 			data, err := io.ReadAll(resp.Body)
-// 			if err != nil {
-// 				return
-// 			}
-// 			err = wf.Cache.Store(CustomRepo, data)
-// 			if err != nil {
-// 				return
-// 			}
-// 		}
-//
-// 		wf.NewItem("Sync Repos Successfully.").Title("Sync Repos Successfully.").Valid(false)
-// 		wf.SendFeedback()
-// 	},
-// }
+var syncCmd = &cobra.Command{
+	Use:    "sync",
+	Hidden: true,
+	Run: func(cmd *cobra.Command, args []string) {
+		// sync repo
+		if _, err := UpdateRepositories(token); err != nil {
+			wf.NewWarningItem("Sync Failed.", err.Error()).Valid(false).Title("Sync Failed.")
+			wf.SendFeedback()
+		}
+
+		// gh.yml
+		url := wf.Config.GetString("url")
+		if url != "" {
+			resp, err := http.Get(url)
+			if err != nil {
+				return
+			}
+			defer resp.Body.Close()
+
+			data, err := io.ReadAll(resp.Body)
+			if err != nil {
+				return
+			}
+			err = wf.Cache.Store(CustomRepo, data)
+			if err != nil {
+				return
+			}
+		}
+
+		wf.NewItem("Sync Repos Successfully.").Title("Sync Repos Successfully.").Valid(false)
+		wf.SendFeedback()
+	},
+}
 
 func init() {
-	// listCmd.AddCommand(actionsCmd)
+	rootCmd.AddCommand(actionsCmd)
 	// // actionsCmd.AddCommand(updateCmd)
 	// actionsCmd.AddCommand(tokenCmd)
 	// actionsCmd.AddCommand(pruneCmd)
-	// actionsCmd.AddCommand(syncCmd)
+	actionsCmd.AddCommand(syncCmd)
 }
 
 func UpdateRepositories(token string) (int64, error) {

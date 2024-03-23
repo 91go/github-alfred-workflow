@@ -1,31 +1,26 @@
 package cmd
 
-import (
-	aw "github.com/deanishe/awgo"
-	"github.com/spf13/cobra"
-)
-
 // listCmd represents the list command
-var listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "list all subcommands",
-	Run: func(cmd *cobra.Command, args []string) {
-		sub := cmd.Commands()
-		for _, c := range sub {
-			if !c.Hidden {
-				wf.NewItem(c.Name()).Valid(false).Icon(&aw.Icon{Value: c.Example}).Title(c.Name()).Subtitle(c.Short).Autocomplete(c.Name())
-			}
-		}
-		if len(args) > 0 {
-			wf.Filter(args[0])
-		}
-		wf.WarnEmpty("No matching commands", "Try a different query?")
-		wf.SendFeedback()
-	},
-}
+// var listCmd = &cobra.Command{
+// 	Use:   "list",
+// 	Short: "list all subcommands",
+// 	Run: func(cmd *cobra.Command, args []string) {
+// 		sub := cmd.Commands()
+// 		for _, c := range sub {
+// 			if !c.Hidden {
+// 				wf.NewItem(c.Name()).Valid(false).Icon(&aw.Icon{Value: c.Example}).Title(c.Name()).Subtitle(c.Short).Autocomplete(c.Name())
+// 			}
+// 		}
+// 		if len(args) > 0 {
+// 			wf.Filter(args[0])
+// 		}
+// 		wf.WarnEmpty("No matching commands", "Try a different query?")
+// 		wf.SendFeedback()
+// 	},
+// }
 
 func init() {
-	rootCmd.AddCommand(listCmd)
+	// rootCmd.AddCommand(listCmd)
 
 	// Here you will define your flags and configuration settings.
 
