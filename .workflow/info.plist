@@ -12,6 +12,16 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
+				<string>DEFA61FC-C812-4189-BC18-9B98A9DE116C</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
 				<string>B23E7AEC-B068-42C9-8FA2-37427A2B8498</string>
 				<key>modifiers</key>
 				<integer>0</integer>
@@ -31,45 +41,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>7BDC63A5-5029-4A0E-9E1F-80BC559D1612</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>85434C51-2F32-4BF0-A265-239140241968</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>85434C51-2F32-4BF0-A265-239140241968</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>AC0DFFB4-8CE3-450A-B94E-9E34D0A009F7</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>ABC2AF18-1866-49AA-B073-279F37F7E78C</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>C528C7C5-66A8-40B5-951C-93FD564B0A72</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>AC0DFFB4-8CE3-450A-B94E-9E34D0A009F7</key>
 		<array>
 			<dict>
@@ -83,7 +54,7 @@
 				<false/>
 			</dict>
 		</array>
-		<key>C528C7C5-66A8-40B5-951C-93FD564B0A72</key>
+		<key>C985EEDA-1DA0-4FE6-A4CD-8714D9C51475</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -110,31 +81,35 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>action</key>
-				<integer>0</integer>
-				<key>argument</key>
-				<integer>0</integer>
-				<key>focusedappvariable</key>
-				<false/>
-				<key>focusedappvariablename</key>
-				<string></string>
-				<key>hotkey</key>
-				<integer>0</integer>
-				<key>hotmod</key>
-				<integer>0</integer>
-				<key>leftcursor</key>
-				<false/>
-				<key>modsmode</key>
+				<key>behaviour</key>
 				<integer>2</integer>
-				<key>relatedAppsMode</key>
+				<key>fontmode</key>
 				<integer>0</integer>
+				<key>fontsizing</key>
+				<integer>3</integer>
+				<key>footertext</key>
+				<string></string>
+				<key>inputfile</key>
+				<string></string>
+				<key>inputtype</key>
+				<integer>0</integer>
+				<key>loadingtext</key>
+				<string></string>
+				<key>outputmode</key>
+				<integer>0</integer>
+				<key>scriptinput</key>
+				<integer>0</integer>
+				<key>spellchecking</key>
+				<integer>0</integer>
+				<key>stackview</key>
+				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.trigger.hotkey</string>
+			<string>alfred.workflow.userinterface.text</string>
 			<key>uid</key>
-			<string>ABC2AF18-1866-49AA-B073-279F37F7E78C</string>
+			<string>DEFA61FC-C812-4189-BC18-9B98A9DE116C</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -188,6 +163,27 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>acceptsfiles</key>
+				<false/>
+				<key>acceptsmulti</key>
+				<integer>0</integer>
+				<key>acceptstext</key>
+				<true/>
+				<key>acceptsurls</key>
+				<false/>
+				<key>name</key>
+				<string>Search Github</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.universalaction</string>
+			<key>uid</key>
+			<string>C985EEDA-1DA0-4FE6-A4CD-8714D9C51475</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>browser</key>
 				<string></string>
 				<key>skipqueryencode</key>
@@ -203,26 +199,6 @@
 			<string>alfred.workflow.action.openurl</string>
 			<key>uid</key>
 			<string>B23E7AEC-B068-42C9-8FA2-37427A2B8498</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string>{query}</string>
-				<key>passthroughargument</key>
-				<false/>
-				<key>variables</key>
-				<dict>
-					<key>hotkey</key>
-					<string>1</string>
-				</dict>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>C528C7C5-66A8-40B5-951C-93FD564B0A72</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -258,35 +234,6 @@
 			<string>C5F714C1-F5BE-4779-8E1B-3BBDB7A9989C</string>
 			<key>version</key>
 			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>action</key>
-				<integer>0</integer>
-				<key>argument</key>
-				<integer>0</integer>
-				<key>focusedappvariable</key>
-				<false/>
-				<key>focusedappvariablename</key>
-				<string></string>
-				<key>hotkey</key>
-				<integer>0</integer>
-				<key>hotmod</key>
-				<integer>0</integer>
-				<key>leftcursor</key>
-				<false/>
-				<key>modsmode</key>
-				<integer>2</integer>
-				<key>relatedAppsMode</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.hotkey</string>
-			<key>uid</key>
-			<string>7BDC63A5-5029-4A0E-9E1F-80BC559D1612</string>
-			<key>version</key>
-			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -358,26 +305,6 @@
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string>{query}</string>
-				<key>passthroughargument</key>
-				<false/>
-				<key>variables</key>
-				<dict>
-					<key>hotkey</key>
-					<string>1</string>
-				</dict>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>85434C51-2F32-4BF0-A265-239140241968</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -388,79 +315,53 @@
 			<key>note</key>
 			<string>github.com</string>
 			<key>xpos</key>
-			<real>310</real>
+			<real>330</real>
 			<key>ypos</key>
-			<real>85</real>
+			<real>80</real>
 		</dict>
 		<key>196DE875-6EF7-4226-BD7A-9C6E4AD2D1B3</key>
 		<dict>
 			<key>xpos</key>
-			<real>765</real>
+			<real>785</real>
 			<key>ypos</key>
 			<real>375</real>
-		</dict>
-		<key>7BDC63A5-5029-4A0E-9E1F-80BC559D1612</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>github.com</string>
-			<key>xpos</key>
-			<real>30</real>
-			<key>ypos</key>
-			<real>370</real>
-		</dict>
-		<key>85434C51-2F32-4BF0-A265-239140241968</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>xpos</key>
-			<real>200</real>
-			<key>ypos</key>
-			<real>400</real>
-		</dict>
-		<key>ABC2AF18-1866-49AA-B073-279F37F7E78C</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>github.com</string>
-			<key>xpos</key>
-			<real>30</real>
-			<key>ypos</key>
-			<real>85</real>
 		</dict>
 		<key>AC0DFFB4-8CE3-450A-B94E-9E34D0A009F7</key>
 		<dict>
 			<key>note</key>
 			<string>github.com</string>
 			<key>xpos</key>
-			<real>300</real>
+			<real>320</real>
 			<key>ypos</key>
 			<real>370</real>
 		</dict>
 		<key>B23E7AEC-B068-42C9-8FA2-37427A2B8498</key>
 		<dict>
 			<key>xpos</key>
-			<real>775</real>
+			<real>785</real>
 			<key>ypos</key>
-			<real>90</real>
-		</dict>
-		<key>C528C7C5-66A8-40B5-951C-93FD564B0A72</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>xpos</key>
-			<real>210</real>
-			<key>ypos</key>
-			<real>115</real>
+			<real>100</real>
 		</dict>
 		<key>C5F714C1-F5BE-4779-8E1B-3BBDB7A9989C</key>
 		<dict>
 			<key>xpos</key>
-			<real>575</real>
+			<real>595</real>
 			<key>ypos</key>
-			<real>185</real>
+			<real>195</real>
+		</dict>
+		<key>C985EEDA-1DA0-4FE6-A4CD-8714D9C51475</key>
+		<dict>
+			<key>xpos</key>
+			<real>35</real>
+			<key>ypos</key>
+			<real>85</real>
+		</dict>
+		<key>DEFA61FC-C812-4189-BC18-9B98A9DE116C</key>
+		<dict>
+			<key>xpos</key>
+			<real>550</real>
+			<key>ypos</key>
+			<real>5</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>

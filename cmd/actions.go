@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"log/slog"
 	"net/http"
 	"time"
 
@@ -117,8 +118,9 @@ var syncCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		// sync repo
 		if _, err := UpdateRepositories(token); err != nil {
-			wf.NewWarningItem("Sync Failed.", err.Error()).Valid(false).Title("Sync Failed.")
-			wf.SendFeedback()
+			// wf.NewWarningItem("Sync Failed.", err.Error()).Valid(false).Title("Sync Failed.")
+			// wf.SendFeedback()
+			slog.Error("Sync Failed.", err.Error())
 		}
 
 		// gh.yml
@@ -126,6 +128,7 @@ var syncCmd = &cobra.Command{
 		if url != "" {
 			resp, err := http.Get(url)
 			if err != nil {
+				slog.Error("request error", slog.Any("err", err))
 				return
 			}
 			defer resp.Body.Close()
@@ -140,8 +143,9 @@ var syncCmd = &cobra.Command{
 			}
 		}
 
-		wf.NewItem("Sync Repos Successfully.").Title("Sync Repos Successfully.").Valid(false)
-		wf.SendFeedback()
+		// wf.NewItem("Sync Repos Successfully.").Title("Sync Repos Successfully.").Valid(false)
+		// wf.SendFeedback()
+		slog.Info("Sync Repos Successfully.")
 	},
 }
 

@@ -105,9 +105,9 @@ var repoCmd = &cobra.Command{
 			name := repo.FullName()
 
 			if repo.Qs != nil {
-				name = "⭐ " + name
+				name = name + " ⭐️"
 				qx := addMarkdownListFormat(repo.Qs)
-				des = fmt.Sprintf("%s \n ## qs \n %s", repo.Description, qx)
+				des = fmt.Sprintf("%s \n --- \n \n%s", repo.Description, qx)
 			}
 
 			item := wf.NewItem(name).Title(name).
