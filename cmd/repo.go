@@ -50,7 +50,7 @@ var repoCmd = &cobra.Command{
 	Example: "icons/repo.png",
 	PostRun: func(cmd *cobra.Command, args []string) {
 		if !wf.IsRunning(syncJob) {
-			cmd := exec.Command("./exe", "actions", syncJob)
+			cmd := exec.Command("./exe", syncJob)
 			if err := wf.RunInBackground(syncJob, cmd); err != nil {
 				ErrorHandle(err)
 			}
